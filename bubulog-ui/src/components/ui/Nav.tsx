@@ -38,7 +38,7 @@ export const Nav = () => {
                  ? "text-primary"
                  : "hover:text-[#252933] text-[#666] dark:text-[#a1a1a1]"
              }
-             after:content-[''] after:absolute after:bottom-[-20px] after:left-0 after:w-full after:h-[2px] 
+             after:content-[''] after:absolute after:bottom-[-20px] after:left-0 after:w-full after:h-[2.5px] 
              after:bg-primary after:scale-x-0 hover:after:scale-x-100`}
             >
               {item.name}

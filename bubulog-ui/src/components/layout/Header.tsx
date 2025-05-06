@@ -15,8 +15,8 @@ export const Header = () => {
          className="flex justify-center items-center gap-x-2 text-xl py-4 px-8 text-primary
           font-[family-name:var(--font-geist-sans)] font-medium tracking-tight"
         >
-            <LibraryBigIcon />
-            <span>布布</span>
+            <LibraryBigIcon size={30} />
+            <span className="text-[#323232]">布布.</span>
         </Link>
         {/* Nav */}
         <Nav />
