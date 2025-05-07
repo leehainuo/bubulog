@@ -15,25 +15,52 @@
     </parent>
 
     <dependencies>
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- Domain 模块 -->
+        <dependency>
+            <groupId>com.lihainuo</groupId>
+            <artifactId>bubulog-domain</artifactId>
+        </dependency>
+        <!-- Common 模块 -->
         <dependency>
             <groupId>com.lihainuo</groupId>
             <artifactId>bubulog-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- Repository -->
+        <dependency>
+            <groupId>com.lihainuo</groupId>
+            <artifactId>bubulog-repository</artifactId>
+        </dependency>
+        <!-- MyBatis -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.3</version>
         </dependency>
     </dependencies>
 

@@ -18,8 +18,11 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>bubulog-app</module>
         <module>bubulog-web</module>
         <module>bubulog-admin</module>
+        <module>bubulog-repository</module>
+        <module>bubulog-domain</module>
         <module>bubulog-common</module>
     </modules>
 
@@ -46,6 +49,11 @@
             <!-- 子模块 -->
             <dependency>
                 <groupId>com.lihainuo</groupId>
+                <artifactId>bubulog-app</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-web</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
@@ -56,8 +64,34 @@
             </dependency>
             <dependency>
                 <groupId>com.lihainuo</groupId>
+                <artifactId>bubulog-repository</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lihainuo</groupId>
+                <artifactId>bubulog-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-common</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!-- MyBatis -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>3.5.7</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>3.5.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>2.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

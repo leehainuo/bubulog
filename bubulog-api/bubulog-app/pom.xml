@@ -3,10 +3,10 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lihainuo</groupId>
-    <artifactId>bubulog-web</artifactId>
+    <artifactId>bubulog-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bubulog-web</name>
-    <description>bubulog-web</description>
+    <name>bubulog-app</name>
+    <description>bubulog-app</description>
 
     <parent>
         <groupId>com.lihainuo</groupId>
@@ -15,54 +15,27 @@
     </parent>
 
     <dependencies>
-        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- Domain 模块 -->
+        <!-- Web模块 -->
         <dependency>
             <groupId>com.lihainuo</groupId>
-            <artifactId>bubulog-domain</artifactId>
+            <artifactId>bubulog-web</artifactId>
         </dependency>
-        <!-- Common 模块 -->
+        <!-- Admin模块 -->
         <dependency>
             <groupId>com.lihainuo</groupId>
-            <artifactId>bubulog-common</artifactId>
-        </dependency>
-        <!-- Repository -->
-        <dependency>
-            <groupId>com.lihainuo</groupId>
-            <artifactId>bubulog-repository</artifactId>
-        </dependency>
-        <!-- MyBatis -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-            <version>3.5.7</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.5.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.3</version>
+            <artifactId>bubulog-admin</artifactId>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
@@ -81,7 +54,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.lihainuo.bubulog.web.BubulogWebApplication</mainClass>
+                    <mainClass>com.lihainuo.bubulog.app.BubulogAppApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>
