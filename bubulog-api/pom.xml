@@ -13,12 +13,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>3.0.2</spring-boot.version>
+        <bubulog.version>0.0.1-SNAPSHOT</bubulog.version>
+        <jackson.version>2.15.2</jackson.version>
+        <mybatis-plus.verison>3.5.7</mybatis-plus.verison>
+        <jwt.version>0.11.2</jwt.version>
     </properties>
 
     <packaging>pom</packaging>
 
     <modules>
         <module>bubulog-app</module>
+        <module>bubulog-auth</module>
         <module>bubulog-web</module>
         <module>bubulog-admin</module>
         <module>bubulog-repository</module>
@@ -39,59 +44,81 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.15.2</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.15.2</version>
+                <version>${jackson.version}</version>
             </dependency>
             <!-- 子模块 -->
             <dependency>
                 <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-app</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${bubulog.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lihainuo</groupId>
+                <artifactId>bubulog-auth</artifactId>
+                <version>${bubulog.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-web</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${bubulog.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-admin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${bubulog.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-repository</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${bubulog.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-domain</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${bubulog.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lihainuo</groupId>
                 <artifactId>bubulog-common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${bubulog.version}</version>
             </dependency>
             <!-- MyBatis -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-                <version>3.5.7</version>
+                <version>${mybatis-plus.verison}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
-                <version>3.5.7</version>
+                <version>${mybatis-plus.verison}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>2.3</version>
+            </dependency>
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jwt.version}</version>
+                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -107,23 +134,6 @@
                     <target>17</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <configuration>
-                    <mainClass>com.lihainuo.bubulogapi.BubulogApiApplication</mainClass>
-                    <skip>true</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

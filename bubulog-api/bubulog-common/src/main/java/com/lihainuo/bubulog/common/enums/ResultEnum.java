@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @author: lihainuo
- * @url: www.lihainuo.com
- * @date: 2025/5/6 12:50
+ * @author lihainuo
+ * @url www.lihainuo.com
+ * @since 2025-05-06
  */
 
 @Getter
@@ -17,6 +17,8 @@ public enum ResultEnum implements BaseExceptionInterface {
     SYSTEM_ERROR("500", "系统异常..."),
     // 业务异常状态码
     PRODUCT_ERROR("400","业务异常..."),
+    UNAUTHORIZED("401", "无访问权限，请先登录！"),
+
     ;
     // 异常码
     private final String errorCode;

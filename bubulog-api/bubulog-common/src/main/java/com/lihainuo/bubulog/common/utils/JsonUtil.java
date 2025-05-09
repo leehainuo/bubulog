@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author lihainuo
- * @url: www.lihainuo.com
- * @dscription: JSON 工具类
+ * @url www.lihainuo.com
+ * @dscription JSON 工具类
  */
 @Slf4j
 public class JsonUtil {

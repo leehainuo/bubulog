@@ -1,11 +1,11 @@
 package com.lihainuo.bubulog.common;
 
 
-//import com.lihainuo.common.enums.ResponseEnum;
-import com.lihainuo.bubulog.common.enums.ResultEnum;
+
 import com.lihainuo.bubulog.common.exception.BaseExceptionInterface;
 import com.lihainuo.bubulog.common.exception.BusinessException;
 import lombok.Data;
+
 /**
  * @author lihainuo * @description: 统一响应结果类
  */
@@ -71,4 +71,5 @@ public class Result<T> {
         result.setMessage(instance.getErrorMessage());
         return result;
     }
+
 }

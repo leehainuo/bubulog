@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lihainuo</groupId>
     <artifactId>bubulog-common</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>bubulog-common</name>
     <description>bubulog-common</description>
 
@@ -50,6 +49,7 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
         </dependency>
+        <!-- JWT -->
     </dependencies>
 
 </project>

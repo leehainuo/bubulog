@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author: lihainuo
- * @url: www.lihainuo.com
- * @date: 2025/5/6 13:01
+ * @author lihainuo
+ * @url www.lihainuo.com
+ * @date 2025/5/6 13:01
  */
 
 @ControllerAdvice

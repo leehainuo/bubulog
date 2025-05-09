@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lihainuo</groupId>
     <artifactId>bubulog-web</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>bubulog-web</name>
     <description>bubulog-web</description>
 
@@ -61,6 +60,15 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
             <version>2.3</version>
+        </dependency>
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lihainuo</groupId>
+            <artifactId>bubulog-auth</artifactId>
         </dependency>
     </dependencies>
 

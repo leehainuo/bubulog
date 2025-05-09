@@ -8,11 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bubulog-web" />
-        <module name="bubulog-admin" />
         <module name="bubulog-common" />
-        <module name="bubulog-domain" />
         <module name="bubulog-app" />
         <module name="bubulog-repository" />
+        <module name="bubulog-admin" />
+        <module name="bubulog-domain" />
+        <module name="bubulog-auth" />
       </profile>
     </annotationProcessing>
   </component>

@@ -3,10 +3,10 @@ package com.lihainuo.bubulog.common.exception;
 import lombok.Getter;
 
 /**
- * @author: lihainuo
- * @url: www.lihainuo.com
- * @date: 2025/5/6 12:56
- * @description: 业务异常
+ * @author lihainuo
+ * @url www.lihainuo.com
+ * @date 2025/5/6 12:56
+ * @description 业务异常
  */
 
 @Getter

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="4" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9f8e865c-fc87-4a30-8541-2dae6eb128ea" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/bubulog-api/bubulog-auth/src/main/java/com/lihainuo/bubulog/auth/filter/JwtAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/enums/ResultEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/enums/ResultEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BaseExceptionInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BaseExceptionInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BusinessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/utils/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/utils/JsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-domain/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-domain/src/main/java/com/lihainuo/bubulog.domain/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-domain/src/main/java/com/lihainuo/bubulog/domain/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-repository/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-repository/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-repository/src/main/java/com/lihainuo/bubulog/repository/config/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-repository/src/main/java/com/lihainuo/bubulog/repository/config/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-web/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-web/src/main/java/com/lihainuo/bubulog/web/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-web/src/main/java/com/lihainuo/bubulog/web/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Exception" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Dev\Envs\maven\apache-maven-3.9.9\.m2\repository" />
+        <option name="userSettingsFile" value="C:\Dev\Envs\maven\apache-maven-3.9.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2wnpbOI1upc90XgjrdCxYwZEcqj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.BubulogAuthApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BubulogAuthApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BubulogApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.PasswordEncoderConfig.executor&quot;: &quot;Run&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Spring Boot.BubulogApplication">
+    <configuration name="PasswordEncoderConfig" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lihainuo.bubulog.auth.config.PasswordEncoderConfig" />
+      <module name="bubulog-auth" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lihainuo.bubulog.auth.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BubulogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="bubulog-app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lihainuo.bubulog.app.BubulogApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lihainuo.bubulog.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BubulogApplication" />
+        <item itemvalue="应用程序.PasswordEncoderConfig" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="9f8e865c-fc87-4a30-8541-2dae6eb128ea" name="更改" comment="" />
+      <created>1746687263520</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746687263520</updated>
+      <workItem from="1746687264872" duration="10860000" />
+      <workItem from="1746778313651" duration="10199000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

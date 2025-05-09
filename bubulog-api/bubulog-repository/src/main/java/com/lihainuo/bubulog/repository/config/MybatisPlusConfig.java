@@ -4,9 +4,9 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author: lihainuo
- * @url: www.lihainuo.com
- * @date: 2025/5/7 08:34
+ * @author lihainuo
+ * @url www.lihainuo.com
+ * @date 2025/5/7 08:34
  */
 
 @Configuration

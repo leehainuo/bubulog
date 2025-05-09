@@ -5,7 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/bubulog-api/pom.xml" />
-        <option value="$PROJECT_DIR$/bubulog-api/bubulog-repository/pom.xml" />
+        <option value="$PROJECT_DIR$/bubulog-api/bubulog-auth/pom.xml" />
       </list>
     </option>
   </component>
