@@ -31,7 +31,7 @@ public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
      * 指定用户登录的访问地址
      */
     public JwtAuthFilter() {
-        super(new AntPathRequestMatcher("/login", "POST"));
+        super(new AntPathRequestMatcher("/auth/login", "POST"));
     }
 
     @Override

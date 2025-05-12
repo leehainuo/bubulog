@@ -8,32 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f8e865c-fc87-4a30-8541-2dae6eb128ea" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/bubulog-api/bubulog-auth/src/main/java/com/lihainuo/bubulog/auth/filter/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-app/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/enums/ResultEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/enums/ResultEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BaseExceptionInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BaseExceptionInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/BusinessException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/utils/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-common/src/main/java/com/lihainuo/bubulog/common/utils/JsonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-domain/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-domain/src/main/java/com/lihainuo/bubulog.domain/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-domain/src/main/java/com/lihainuo/bubulog/domain/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-repository/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-repository/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-repository/src/main/java/com/lihainuo/bubulog/repository/config/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-repository/src/main/java/com/lihainuo/bubulog/repository/config/MybatisPlusConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-web/src/main/java/com/lihainuo/bubulog/web/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-web/src/main/java/com/lihainuo/bubulog/web/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bubulog-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-auth/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-api/bubulog-auth/src/main/java/com/lihainuo/bubulog/auth/filter/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-api/bubulog-auth/src/main/java/com/lihainuo/bubulog/auth/filter/JwtAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-ui/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-ui/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-ui/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-ui/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-ui/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-ui/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-ui/src/components/ui/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-ui/src/components/ui/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bubulog-ui/src/components/ui/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/bubulog-ui/src/components/ui/LoginForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +80,12 @@
     &quot;应用程序.PasswordEncoderConfig.executor&quot;: &quot;Run&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Dev\temp\bubublog\bubulog-api" />
+      <recent name="C:\Dev\temp\bubublog\bubulog-api\bubulog-service" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.BubulogApplication">
     <configuration name="PasswordEncoderConfig" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.lihainuo.bubulog.auth.config.PasswordEncoderConfig" />
@@ -147,7 +136,9 @@
       <option name="presentableId" value="Default" />
       <updated>1746687263520</updated>
       <workItem from="1746687264872" duration="10860000" />
-      <workItem from="1746778313651" duration="10199000" />
+      <workItem from="1746778313651" duration="13399000" />
+      <workItem from="1746863289145" duration="28000" />
+      <workItem from="1746938782974" duration="7245000" />
     </task>
     <servers />
   </component>
