@@ -6,9 +6,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { cookies } from "next/headers";
 import { LoginForm } from "./LoginForm";
 
-export const Avatar = () => {
+export const Avatar = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("access_token")?.value;
+
+  if (token) {
+    return <h1>已登录</h1>;
+  }
+
   return (
     <section className="mx-4">
       <Dialog>
@@ -18,7 +26,7 @@ export const Avatar = () => {
         >
           登录 | 注册
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="p-10">
           <DialogHeader>
             <DialogTitle className="font-normal flex flex-col text-2xl">
               欢迎来到布布博客

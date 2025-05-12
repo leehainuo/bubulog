@@ -12,6 +12,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { login } from "@/api/auth";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -19,7 +22,9 @@ const formSchema = z.object({
 });
 
 export const LoginForm = () => {
-  // 1. Define your form.
+  const router = useRouter();
+
+  // 定义表单结构
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,11 +32,20 @@ export const LoginForm = () => {
       password: "test",
     },
   });
-  // 2. Define a submit handler.
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  // 表单处理函数
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const res = await login(values.username, values.password);
+    // 请求不成功
+    if (!res.ok) {
+      toast.message("登录失败", {
+        description: "用户名或密码不正确",
+      });
+    } else {
+      toast.message("登录成功", {
+        description: "欢迎进入布布后台",
+      });
+      router.push("/dashboard")
+    }
   };
   return (
     <Form {...form}>
@@ -60,7 +74,9 @@ export const LoginForm = () => {
             </FormItem>
           )}
         />
-        <Button className="rounded-[0.25rem] w-full py-6">登录</Button>
+        <Button className="rounded-[0.25rem] w-full py-6 cursor-pointer mt-4">
+          登录
+        </Button>
       </form>
     </Form>
   );
