@@ -1,8 +1,8 @@
 import { LibraryBigIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import { Nav } from '../ui/Nav'
-import { Avatar } from '../ui/Avatar'
+import { Nav } from '../../ui/Nav'
+import { Avatar } from '../../ui/Auth/Avatar'
 
 export const Header = () => {
   return (
