@@ -73,6 +73,7 @@
             <groupId>com.lihainuo</groupId>
             <artifactId>bubulog-common</artifactId>
         </dependency>
+        <!-- Repository -->
         <dependency>
             <groupId>com.lihainuo</groupId>
             <artifactId>bubulog-repository</artifactId>

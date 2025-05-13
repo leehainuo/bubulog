@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { login } from "@/api/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -23,6 +24,8 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
   const router = useRouter();
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   // 定义表单结构
   const form = useForm<z.infer<typeof formSchema>>({
@@ -32,6 +35,21 @@ export const LoginForm = () => {
       password: "test",
     },
   });
+
+  // 处理键盘事件
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      passwordRef.current?.focus();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      usernameRef.current?.focus();
+    } else if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      form.handleSubmit(onSubmit)();
+    }
+  };
+
   // 表单处理函数
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const res = await login(values.username, values.password);
@@ -56,7 +74,15 @@ export const LoginForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="请输入用户名" {...field} />
+                <Input 
+                  placeholder="请输入用户名" 
+                  {...field} 
+                  ref={(e) => {
+                    field.ref(e);
+                    usernameRef.current = e;
+                  }}
+                  onKeyDown={handleKeyDown}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -68,7 +94,16 @@ export const LoginForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="请输入密码" {...field} />
+                <Input 
+                  placeholder="请输入密码" 
+                  type="password"
+                  {...field} 
+                  ref={(e) => {
+                    field.ref(e);
+                    passwordRef.current = e;
+                  }}
+                  onKeyDown={handleKeyDown}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -30,7 +30,7 @@ export const Avatar = async () => {
             <div
               style={{
                 backgroundImage:
-                  "linear-gradient(75deg, #1e80ff 15%, #ffffff 100%)",
+                  "linear-gradient(75deg, #000000 15%, #fafafa 100%)",
               }}
               className="size-9 rounded-full cursor-pointer"
             />
@@ -39,7 +39,7 @@ export const Avatar = async () => {
                 <div
                   style={{
                     backgroundImage:
-                      "linear-gradient(75deg, #1e80ff 15%, #ffffff 100%)",
+                      "linear-gradient(75deg, #000000 15%, #fafafa 100%)",
                   }}
                   className="size-9 rounded-full cursor-pointer"
                 />
