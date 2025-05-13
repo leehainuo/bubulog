@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import {
   Popover,
   PopoverContent,
@@ -11,18 +13,31 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { cookies } from "next/headers";
 import { LoginForm } from "./LoginForm";
 import Link from "next/link";
 import { DoorOpenIcon } from "lucide-react";
 import { LogoutButton } from "./LogoutButton";
+import { usePathname } from "next/navigation";
+import { useAuthStore } from "@/store/auth";
 
-export const Avatar = async () => {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("access_token")?.value;
+export const Avatar = () => {
+  const { isLoggedIn, setIsLoggedIn } = useAuthStore();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("access_token="))
+        ?.split("=")[1];
+      setIsLoggedIn(!!token);
+    };
+
+    checkLoginStatus();
+  }, [pathname, setIsLoggedIn]); // 当路由变化时重新检查登录状态
 
   // 登录界面
-  if (token) {
+  if (isLoggedIn) {
     return (
       <div className="flex justify-center mx-4 w-[100.5px]">
         <Popover>
@@ -34,7 +49,7 @@ export const Avatar = async () => {
               }}
               className="size-9 rounded-full cursor-pointer"
             />
-            <PopoverContent>
+            <PopoverContent className="rounded-lg">
               <div className="flex items-center gap-x-4 font-medium">
                 <div
                   style={{
@@ -65,7 +80,7 @@ export const Avatar = async () => {
     <section className="mx-4 w-[100.5px]">
       <Dialog>
         <DialogTrigger
-          className="rounded-[0.25rem] bg-primary text-primary-foreground hover:bg-primary/90
+          className="rounded-lg bg-primary text-primary-foreground hover:bg-primary/90
          py-2 px-4 text-sm font-medium cursor-pointer"
         >
           登录 | 注册

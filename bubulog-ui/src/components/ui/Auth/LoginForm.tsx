@@ -16,6 +16,7 @@ import { login } from "@/api/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
+import { useAuthStore } from "@/store/auth";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -24,6 +25,7 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
   const router = useRouter();
+  const { setIsLoggedIn } = useAuthStore();
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -59,6 +61,7 @@ export const LoginForm = () => {
         description: "用户名或密码不正确",
       });
     } else {
+      setIsLoggedIn(true);
       toast.message("登录成功", {
         description: "欢迎进入布布后台",
       });
