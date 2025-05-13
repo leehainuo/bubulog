@@ -1,5 +1,8 @@
 package com.lihainuo.bubulog.auth.handler;
 
+import com.lihainuo.bubulog.auth.utils.ResultUtil;
+import com.lihainuo.bubulog.common.Result;
+import com.lihainuo.bubulog.common.enums.ResultEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -24,8 +27,9 @@ import java.io.IOException;
 @Component
 public class CoustomAccessDeniedHandler implements AccessDeniedHandler {
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+    public void handle(HttpServletRequest req, HttpServletResponse res, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         log.warn("登录成功访问收保护的资源，但是权限不够: ", accessDeniedException);
         // 预留，后面引入多角色时会用到
+        ResultUtil.fail(res, Result.fail(ResultEnum.LOW_AUTHORITY));
     }
 }

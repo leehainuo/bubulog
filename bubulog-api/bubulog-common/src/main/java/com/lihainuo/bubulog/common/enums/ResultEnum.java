@@ -18,6 +18,7 @@ public enum ResultEnum implements BaseExceptionInterface {
     // 业务异常状态码
     PRODUCT_ERROR("400","业务异常..."),
     UNAUTHORIZED("401", "无访问权限，请先登录！"),
+    LOW_AUTHORITY("405", "权限低级"),
 
     ;
     // 异常码

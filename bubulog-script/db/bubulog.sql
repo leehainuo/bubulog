@@ -18,3 +18,21 @@ CREATE TABLE `t_user`
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE KEY `uk_username` (`username`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+CREATE TABLE `t_user_role` (
+    `id`          bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `username`    varchar(60) NOT NULL COMMENT '用户名',
+    `role`        varchar(60) NOT NULL COMMENT '角色',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `idx_username` (`username`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
+
+# 插入初始账号数据
+INSERT INTO `t_user` (username, password)
+VALUES ('admin', '$2a$10$LPqbsPETXNDbVQqYB1Jg3uj8PSq.8cW8T1jE0cQcQpN2YXza7C7Wi'),
+       ('test', '$2a$10$AV3AyY1hvtuenqKp08ChMehrOG9wbwLfJwwDHkiFBlr9R6C3l8LX2');
+# 初始化账号对应角色数据
+INSERT INTO `t_user_role` (id, username, role)
+VALUES (1, 'admin', 'ROLE_ADMIN'),
+       (2, 'test', 'ROLE_VISITOR');
