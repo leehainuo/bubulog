@@ -10,7 +10,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <Slider />
-      <main className="p-4">
+      <main className="w-full">
         <Header />
         {children}
       </main>
