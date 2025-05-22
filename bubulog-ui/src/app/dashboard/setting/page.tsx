@@ -3,7 +3,7 @@ import React from 'react'
 
 const Setting = () => {
   return (
-    <div>博客设置页面</div>
+    <div className="h-[calc(100vh-132px)]">博客设置页面</div>
   )
 }
 

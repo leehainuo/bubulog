@@ -3,7 +3,7 @@ import React from 'react'
 
 const Category = () => {
   return (
-    <div>分类管理页面</div>
+    <div className="h-[calc(100vh-132px)]">分类管理页面</div>
   )
 }
 

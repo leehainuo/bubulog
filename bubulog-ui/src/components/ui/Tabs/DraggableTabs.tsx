@@ -112,7 +112,7 @@ export const DraggableTabs = () => {
             onClick={() => handleTabClick(tab.id, tab.path)}
             className={`
               flex items-center px-4 py-2 cursor-pointer select-none
-              border-b-2 min-w-32 max-w-40 truncate rounded-t-lg
+              border-b-2 w-32 truncate rounded-t-lg
               transition-all duration-200 ease-in-out transform
               ${draggedTab === tab.id ? 'opacity-50' : 'opacity-100'}
               ${activeTab === tab.id 

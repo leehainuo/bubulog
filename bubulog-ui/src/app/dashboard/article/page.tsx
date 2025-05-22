@@ -3,7 +3,7 @@ import React from 'react'
 
 const Article = () => {
   return (
-    <div>文章管理页面</div>
+    <div className="h-[calc(100vh-132px)]">文章管理页面</div>
   )
 }
 
