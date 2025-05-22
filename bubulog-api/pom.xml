@@ -24,8 +24,7 @@
     <modules>
         <module>bubulog-app</module>
         <module>bubulog-auth</module>
-        <module>bubulog-web</module>
-        <module>bubulog-admin</module>
+        <module>bubulog-server</module>
         <module>bubulog-repository</module>
         <module>bubulog-domain</module>
         <module>bubulog-common</module>
@@ -64,12 +63,7 @@
             </dependency>
             <dependency>
                 <groupId>com.lihainuo</groupId>
-                <artifactId>bubulog-web</artifactId>
-                <version>${bubulog.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.lihainuo</groupId>
-                <artifactId>bubulog-admin</artifactId>
+                <artifactId>bubulog-server</artifactId>
                 <version>${bubulog.version}</version>
             </dependency>
             <dependency>

@@ -1,5 +1,6 @@
 package com.lihainuo.bubulog.auth.filter;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.lihainuo.bubulog.auth.handler.AuthEntryPointHandler;
 import com.lihainuo.bubulog.auth.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -57,7 +58,7 @@ public class TokenAuthFilter extends OncePerRequestFilter {
             log.info("Token: {}", token);
 
             // 检查 Token 是否非空（去空格后非空）
-            if (token != null && !token.trim().isEmpty()) {
+            if (StringUtils.isNotBlank(token)) {
                 try {
                     // 校验 Token 有效性
                     jwtUtil.validateToken(token);
@@ -66,16 +67,17 @@ public class TokenAuthFilter extends OncePerRequestFilter {
                             new AuthenticationServiceException("Token 不可用"));
                     return;
                 } catch (ExpiredJwtException e) {
-                    authEntryPointHandler.commence(req, res, new AuthenticationServiceException("Token 已失效"));
+                    authEntryPointHandler.commence(
+                            req, res,
+                            new AuthenticationServiceException("Token 已失效"));
                     return;
                 }
 
                 // 从 Token 解析用户名
-                Claims claims = jwtUtil.parseToken(token);
-                String username = claims.get("username", String.class);
+                String username = jwtUtil.getUsernameByToken(token);
 
                 // 检查用户名非空且当前无认证信息
-                if (username != null && !username.trim().isEmpty()
+                if (StringUtils.isNotBlank(username)
                         && SecurityContextHolder.getContext().getAuthentication() == null) {
                     // 加载用户详情
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);

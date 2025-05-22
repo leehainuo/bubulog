@@ -31,7 +31,7 @@ import java.io.IOException;
 public class AuthEntryPointHandler implements AuthenticationEntryPoint {
 
     @Override
-    public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException authException) throws IOException {
         log.warn("用户未登录访问受保护的资源: ", authException);
         if (authException instanceof InsufficientAuthenticationException) {
             ResultUtil.fail(res, HttpStatus.UNAUTHORIZED.value(), Result.fail(ResultEnum.UNAUTHORIZED));

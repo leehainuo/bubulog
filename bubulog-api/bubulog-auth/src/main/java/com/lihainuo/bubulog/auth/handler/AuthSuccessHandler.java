@@ -40,9 +40,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         // 通过用户名生成Token
         String username = userDetails.getUsername();
-        HashMap<String, Object> claims = new HashMap<String, Object>();
-        claims.put("username", username);
-        String token = "Bearer " + jwtUtil.createToken(claims);
+        String token = "Bearer " + jwtUtil.generateToken(username);
 
         // 返回Token
         LoginVO loginVO = LoginVO.builder().token(token).build();
