@@ -44,4 +44,10 @@ public class CategoryController {
         return categoryService.queryCategory(queryCategoryDTO);
     }
 
+    @PostMapping("/select/list")
+    @ApiOperationLog(description = "下拉列表获取分类")
+    public Result selectListCategory() {
+        return categoryService.selectListCategory();
+    }
+
 }

@@ -1,8 +1,9 @@
+import '@ant-design/v5-patch-for-react-19';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/provider/theme-provider";
 import "./globals.css";
-import { Toaster } from "sonner";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import Providers from "@/components/provider/QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,23 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" suppressHydrationWarning>
+    <html lang="zh-CN">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster 
-            position="top-center" 
-            richColors 
-            duration={3000}
-          />
-        </ThemeProvider>
+        <AntdRegistry>
+          <Providers>
+              {children}
+          </Providers>
+        </AntdRegistry>
       </body>
     </html>
   );

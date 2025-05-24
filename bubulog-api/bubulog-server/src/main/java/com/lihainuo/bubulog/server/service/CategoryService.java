@@ -36,4 +36,11 @@ public interface CategoryService extends IService<Category> {
      * @return
      */
     Result deleteCategory(DeleteCategoryDTO deleteCategoryDTO);
+
+    /**
+     * 下拉列表获取分类
+     * @param
+     * @return
+     */
+    Result selectListCategory();
 }

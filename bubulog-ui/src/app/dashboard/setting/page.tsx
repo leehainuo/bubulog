@@ -1,10 +1,9 @@
-'use client'
 import React from 'react'
 
-const Setting = () => {
+export const SettingPage = () => {
   return (
-    <div className="h-[calc(100vh-132px)]">博客设置页面</div>
+    <div>博客设置管理页</div>
   )
 }
 
-export default Setting
+export default SettingPage

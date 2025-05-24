@@ -1,19 +1,9 @@
-// 登录
-export const login = async (
-  username: string, 
-  password: string
-): Promise<Response> => {
-  const res = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, password }),
-  });
-  return res
-};
-// 登出
-export const logout = async () => {
-  document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  return { ok: true };
-};
+import axios from "@/lib/axios"
+
+// 登录接口
+export const login = (
+    username: string | undefined,
+    password: string | undefined
+) => {
+    return axios.post("/auth/login", {username, password})
+}

@@ -1,42 +1,31 @@
-"use client";
+import React from "react";
+import { Layout, Button, theme } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { DraggableTabs } from "@/components/ui/Tabs/DraggableTabs";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import Link from "next/link";
-import { DoorOpenIcon } from "lucide-react";
+interface HeaderProps {
+  collapsed: boolean;
+  setCollapsed: (state: boolean) => void;
+}
 
-export const Header = () => {
+export const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
   return (
-    <header className="bg-background w-full border-b">
-      <div className="flex items-center w-full p-2.5 border-b">
-        <SidebarTrigger className="mx-4" />
-        <div className="flex-1" />
-        <Popover>
-          <PopoverTrigger className="flex items-center gap-x-2 mx-4 cursor-pointer">
-            <div
-              style={{
-                backgroundImage:
-                  "linear-gradient(75deg, #000000 15%, #fafafa 100%)",
-              }}
-              className="size-7 rounded-full"
-            />
-            <span className="font-medium text-[#666]">小布管理员</span>
-            <PopoverContent className="rounded-lg w-40">
-              <Link
-               href="/"
-               className="flex items-center gap-x-2 font-medium text-[13px] text-[#666] dark:text-[#a1a1a1] my-4 ml-1.5"
-              >
-                <DoorOpenIcon size={18} />
-                  前往前台
-              </Link>
-            </PopoverContent>
-          </PopoverTrigger>
-        </Popover>
-      </div>
-      <div className="px-4 flex-1 w-full">
-        <DraggableTabs />
-      </div>
-    </header>
+    <Layout.Header
+     style={{ padding: 0, background: colorBgContainer }}
+    >
+      <Button
+        type="text"
+        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        onClick={() => setCollapsed(!collapsed)}
+        style={{
+          fontSize: "16px",
+          width: 64,
+          height: 64,
+        }}
+      />
+    </Layout.Header>
   );
 };

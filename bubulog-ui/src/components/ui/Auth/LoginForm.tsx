@@ -1,121 +1,107 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import React, { useRef } from "react";
+import type { FormProps } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { login } from "@/api/auth";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
-import { useAuthStore } from "@/store/auth";
+import { setToken } from "@/lib/cookie";
+import type { InputRef } from "antd";
 
-const formSchema = z.object({
-  username: z.string().min(2).max(50),
-  password: z.string().min(4).max(50),
-});
+type FieldType = {
+  username?: string;
+  password?: string;
+  remember?: string;
+};
 
 export const LoginForm = () => {
   const router = useRouter();
-  const { setIsLoggedIn } = useAuthStore();
-  const usernameRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const [messageApi, contextHolder] = message.useMessage();
+  const usernameRef = useRef<InputRef>(null);
+  const passwordRef = useRef<InputRef>(null);
+  const formRef = useRef<any>(null);
 
-  // 定义表单结构
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "test",
-      password: "test",
-    },
-  });
+  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    login(values.username, values.password)
+      .then((res) => {
+        // 获取 Token
+        const token = res.data.data.token;
+        // 将 Token 存入cookie
+        setToken(token)
+        // 跳转到仪表盘并添加欢迎消息
+        router.push("/dashboard?message=登录成功，欢迎回来");
+      })
+      .catch((err) => {
+        console.log(err);
+        messageApi.error("账号或密码错误");
+      });
+  };
 
-  // 处理键盘事件
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
+  // 键盘事件处理
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, field: "username" | "password") => {
+    if (e.key === "ArrowDown" || (e.key === "ArrowUp" && field === "password")) {
       e.preventDefault();
-      passwordRef.current?.focus();
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      usernameRef.current?.focus();
-    } else if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      form.handleSubmit(onSubmit)();
+      if (field === "username") {
+        passwordRef.current?.focus();
+      } else {
+        usernameRef.current?.focus();
+      }
+    }
+    if (e.key === "Enter") {
+      formRef.current?.submit();
     }
   };
 
-  // 表单处理函数
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const res = await login(values.username, values.password);
-    // 请求不成功
-    if (!res.ok) {
-      toast.message("登录失败", {
-        description: "用户名或密码不正确",
-      });
-    } else {
-      setIsLoggedIn(true);
-      toast.message("登录成功", {
-        description: "欢迎进入布布后台",
-      });
-      router.push("/dashboard")
-    }
-  };
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
+    <>
+      {contextHolder}
+      <Form
+        ref={formRef}
+        name="basic"
+        wrapperCol={{ span: 28 }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        initialValues={{
+          username: "test",
+          remember: true
+        }}
+        onFinish={onFinish}
+        autoComplete="off"
+      >
+        <Form.Item<FieldType>
           name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input 
-                  placeholder="请输入用户名" 
-                  {...field} 
-                  ref={(e) => {
-                    field.ref(e);
-                    usernameRef.current = e;
-                  }}
-                  onKeyDown={handleKeyDown}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
+          style={{ width: 280 }}
+          rules={[{ required: true, message: "用户名不能为空！" }]}
+        >
+          <Input
+            ref={usernameRef}
+            placeholder="请输入用户名"
+            onKeyDown={(e) => handleKeyDown(e, "username")}
+          />
+        </Form.Item>
+
+        <Form.Item<FieldType>
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input 
-                  placeholder="请输入密码" 
-                  type="password"
-                  {...field} 
-                  ref={(e) => {
-                    field.ref(e);
-                    passwordRef.current = e;
-                  }}
-                  onKeyDown={handleKeyDown}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button className="rounded-[0.25rem] w-full py-6 cursor-pointer mt-4">
-          登录
-        </Button>
-      </form>
-    </Form>
+          style={{ width: 280 }}
+          rules={[{ required: true, message: "请输入密码！" }]}
+        >
+          <Input.Password
+            ref={passwordRef}
+            placeholder="请输入密码 游客: test"
+            onKeyDown={(e) => handleKeyDown(e, "password")}
+          />
+        </Form.Item>
+
+        <Form.Item label={null}>
+          <Button type="primary" htmlType="submit" style={{ width: 280 }}>
+            登录
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };

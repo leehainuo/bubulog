@@ -14,6 +14,7 @@ import com.lihainuo.bubulog.domain.dto.DeleteCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.QueryCategoryDTO;
 import com.lihainuo.bubulog.domain.entity.Category;
 import com.lihainuo.bubulog.domain.vo.QueryCategoryVO;
+import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
 import com.lihainuo.bubulog.repository.mapper.CategoryMapper;
 import com.lihainuo.bubulog.server.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
@@ -121,4 +122,29 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         this.baseMapper.deleteById(categoryId);
         return Result.success();
     }
+
+    /**
+     * 下拉列表获取分类
+     * @param
+     * @return
+     */
+    @Override
+    public Result selectListCategory() {
+        // 查询所有分类
+        List<Category> categories = this.baseMapper.selectList(null);
+        // 转换为VO
+        List<SelectCategoryVO> vos = null;
+        if (!CollectionUtils.isEmpty(categories)) {
+            // 将分类 ID -> Value 分类名称 -> Label
+            vos = categories.stream()
+                    .map(item -> SelectCategoryVO.builder()
+                            .label(item.getName())
+                            .value(item.getId())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        return Result.success(vos);
+    }
+
 }

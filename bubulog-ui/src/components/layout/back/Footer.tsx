@@ -1,11 +1,12 @@
 import React from 'react'
+import { Layout } from 'antd'
 
 export const Footer = () => {
   return (
-    <footer
-     className="w-full h-10 bg-background border-t border-border"
+    <Layout.Footer
+     className="text-center"
     >
-
-    </footer>
+        Pop Lab ©{new Date().getFullYear()} Created by leehainuo
+    </Layout.Footer>
   )
 }
