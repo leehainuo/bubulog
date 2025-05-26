@@ -28,7 +28,7 @@ interface DraggableTabPaneProps extends React.HTMLAttributes<HTMLDivElement> {
 const DraggableTabNode: React.FC<Readonly<DraggableTabPaneProps>> = ({
   ...props
 }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({
       id: props["data-node-key"],
     });
@@ -36,8 +36,12 @@ const DraggableTabNode: React.FC<Readonly<DraggableTabPaneProps>> = ({
   const style: React.CSSProperties = {
     ...props.style,
     transform: CSS.Translate.toString(transform),
-    transition,
-    cursor: "move",
+    transition: transition || "all 0.25s cubic-bezier(.22,1,.36,1)",
+    cursor: isDragging ? "grabbing" : "grab",
+    zIndex: transform ? 100 : "auto",
+    boxShadow: transform ? "0 4px 16px rgba(0,0,0,0.12)" : undefined,
+    opacity: transform ? 0.95 : 1,
+    userSelect: "none",
   };
 
   return React.cloneElement(props.children as React.ReactElement<any, string>, {
@@ -52,6 +56,7 @@ export const TabList = () => {
   const pathname = usePathname()
   const router = useRouter()
   const [mounted, setMounted] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
   
   // 使用zustand store
   const { items, moveItem, removeItem, resetItems } = useTabListStore();
@@ -86,7 +91,7 @@ export const TabList = () => {
       const key = targetKey as string;
       // 不允许删除仪表盘
       if (key === '/dashboard') {
-        message.warning('不能删除仪表盘标签');
+        messageApi.warning('不能删除仪表盘标签');
         return;
       }
       
@@ -113,7 +118,7 @@ export const TabList = () => {
   const handleReset = () => {
     resetItems();
     router.push('/dashboard');
-    message.success('标签已重置');
+    messageApi.success('标签已重置');
   };
 
   if (!mounted) {
@@ -121,10 +126,15 @@ export const TabList = () => {
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div
+     className="overflow-auto" 
+     style={{ display: 'flex', alignItems: 'center' }}
+    >
+      {contextHolder}
       <Tabs
         hideAdd
         type="editable-card"
+        className="my-tabs"
         items={items}
         activeKey={pathname}
         onChange={onChange}
@@ -154,7 +164,7 @@ export const TabList = () => {
         )}
         style={{
           marginBottom: 0,
-          padding: '8px 16px 0',
+          padding: '16px 16px 0',
           flex: 1
         }}
       />

@@ -6,7 +6,7 @@ export const Footer = () => {
     <Layout.Footer
      className="text-center"
     >
-        Pop Lab ©{new Date().getFullYear()} Created by leehainuo
+        布布博客 ©{new Date().getFullYear()} Created by leehainuo
     </Layout.Footer>
   )
 }

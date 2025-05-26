@@ -1,26 +1,8 @@
 "use client";
-import React from "react";
-import { Table, Modal, message } from "antd";
+import React, { useState } from "react";
+import { Table, Modal, Input, message } from "antd";
 import type { TableColumnsType } from "antd";
-
-// 编辑和删除的处理函数
-const handleEdit = (record: DataType) => {
-  Modal.info({
-    title: "编辑",
-    content: `你点击了编辑：${record.categoryName}`,
-  });
-};
-
-const handleDelete = (record: DataType) => {
-  Modal.confirm({
-    title: "删除",
-    content: `确定要删除：${record.categoryName} 吗？`,
-    onOk: () => {
-      message.success("删除成功");
-      // 这里可以加删除逻辑
-    },
-  });
-};
+import { deleteCategory, updateCategory } from "@/api/category";
 
 interface DataType {
   categoryId: string;
@@ -28,65 +10,124 @@ interface DataType {
   createTime: string;
 }
 
-const columns: TableColumnsType<DataType> = [
-  { title: "分类名称", dataIndex: "categoryName" },
-  { title: "创建时间", dataIndex: "createTime" },
-  {
-    title: "操作",
-    dataIndex: "",
-    render: (_, record: DataType) => (
-      <>
-        <a style={{ marginRight: 16 }} onClick={() => handleEdit(record)}>
-          修改
-        </a>
-        <a style={{ color: "red" }} onClick={() => handleDelete(record)}>
-          删除
-        </a>
-      </>
-    ),
-  },
-];
+interface TableCategoryProps {
+  data: DataType[];
+  pagination: {
+    current: number;
+    pageSize: number;
+    total: number;
+  };
+  onPageChange: (page: number) => void;
+  isLoading: boolean;
+  onRefresh: () => void;
+}
 
-const dataSource = Array.from<DataType>({ length: 46 }).map<DataType>(
-  (_, i) => ({
-    categoryId: i.toString(),
-    categoryName: `Edward King ${i}`,
-    createTime: "2025-5-24",
-  })
-);
+export const TableCategory = ({
+  data,
+  pagination,
+  onPageChange,
+  isLoading,
+  onRefresh,
+}: TableCategoryProps) => {
+  // 提示弹窗
+  const [messageApi, contextHolder] = message.useMessage();
+  // 编辑弹窗相关
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editRecord, setEditRecord] = useState<DataType | null>(null);
+  const [editName, setEditName] = useState("");
 
-export const TableCategory = () => {
+  // 删除弹窗相关
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteRecord, setDeleteRecord] = useState<DataType | null>(null);
+
+  // 编辑
+  const handleEdit = (record: DataType) => {
+    setEditRecord(record);
+    setEditName(record.categoryName);
+    setEditModalOpen(true);
+  };
+  const handleEditOk = async () => {
+    await updateCategory(editRecord!.categoryId, editName);
+    messageApi.success("修改成功");
+    setEditModalOpen(false);
+    onRefresh();
+  };
+
+  // 删除
+  const handleDelete = (record: DataType) => {
+    setDeleteRecord(record);
+    setDeleteModalOpen(true);
+  };
+  const handleDeleteOk = async () => {
+    await deleteCategory(deleteRecord!.categoryId);
+    messageApi.success("删除成功");
+    setDeleteModalOpen(false);
+    onRefresh();
+  };
+
+  const columns: TableColumnsType<DataType> = [
+    { title: "分类名称", dataIndex: "categoryName" },
+    { title: "创建时间", dataIndex: "createTime" },
+    {
+      title: "操作",
+      dataIndex: "",
+      render: (_, record: DataType) => (
+        <>
+          <a style={{ marginRight: 16 }} onClick={() => handleEdit(record)}>
+            修改
+          </a>
+          <a style={{ color: "red" }} onClick={() => handleDelete(record)}>
+            删除
+          </a>
+        </>
+      ),
+    },
+  ];
 
   return (
-    <Table<DataType>
-      className="mt-8"
-      rowKey="categoryId"
-      columns={columns.map((col) => {
-        // 让 columns 能访问 handleEdit/handleDelete
-        if (col.title === "操作") {
-          return {
-            ...col,
-            render: (_, record: DataType) => (
-              <>
-                <a
-                  style={{ marginRight: 16 }}
-                  onClick={() => handleEdit(record)}
-                >
-                  修改
-                </a>
-                <a
-                  style={{ color: "red" }}
-                  onClick={() => handleDelete(record)}
-                >
-                  删除
-                </a>
-              </>
-            ),
-          };
-        }
-        return col;
-      })}
-      dataSource={dataSource}
-    />
+    <>
+      {contextHolder}
+      <Table<DataType>
+        className="mt-8"
+        rowKey="categoryId"
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          current: pagination.current,
+          pageSize: pagination.pageSize,
+          total: pagination.total,
+          onChange: onPageChange,
+        }}
+        loading={isLoading}
+      />
+
+      {/* 编辑弹窗 */}
+      <Modal
+        title="编辑分类"
+        open={editModalOpen}
+        onOk={handleEditOk}
+        onCancel={() => setEditModalOpen(false)}
+        okText="确定"
+        cancelText="取消"
+      >
+        <Input
+          value={editName}
+          onChange={e => setEditName(e.target.value)}
+          placeholder="请输入分类名称"
+        />
+      </Modal>
+
+      {/* 删除弹窗 */}
+      <Modal
+        title="删除"
+        open={deleteModalOpen}
+        onOk={handleDeleteOk}
+        onCancel={() => setDeleteModalOpen(false)}
+        okText="确定"
+        cancelText="取消"
+      >
+        确定要删除：{deleteRecord?.categoryName} 标签吗？
+      </Modal>
+    </>
   );
 };

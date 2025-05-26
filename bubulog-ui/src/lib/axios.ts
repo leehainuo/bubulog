@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "./cookie";
+import { getToken, removeToken } from "./cookie";
 
 // 创建 Axios 实例
 const instance = axios.create({
@@ -33,6 +33,13 @@ instance.interceptors.response.use((response) => {
 }, (error) => {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
+    if (error.response.status === 401) {
+        // 删除 Token
+        removeToken()
+        // 跳转到登录页面
+        const url = '/auth/login?message=' + encodeURIComponent('登录状态已过期，请重新登录。')
+        window.location.href = url
+    }
     return Promise.reject(error)
 })
 

@@ -12,6 +12,7 @@ import com.lihainuo.bubulog.common.exception.BusinessException;
 import com.lihainuo.bubulog.domain.dto.AddCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.DeleteCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.QueryCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.UpdateCategoryDTO;
 import com.lihainuo.bubulog.domain.entity.Category;
 import com.lihainuo.bubulog.domain.vo.QueryCategoryVO;
 import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
@@ -20,6 +21,9 @@ import com.lihainuo.bubulog.server.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -63,6 +67,39 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         this.baseMapper.insert(newCategory);
 
         return Result.success();
+    }
+
+    /**
+     * 删除分类
+     * @param deleteCategoryDTO
+     * @return
+     */
+    @Override
+    public Result deleteCategory(DeleteCategoryDTO deleteCategoryDTO) {
+        Long categoryId = deleteCategoryDTO.getCategoryId();
+        this.baseMapper.deleteById(categoryId);
+        return Result.success();
+    }
+
+    /**
+     * 更新分类
+     * @param updateCategoryDTO
+     * @return
+     */
+    @Override
+    public Result updateCategory(UpdateCategoryDTO updateCategoryDTO) {
+        // 获取更新分类 Id、名称
+        Long categoryId = updateCategoryDTO.getCategoryId();
+        String categoryName = updateCategoryDTO.getCategoryName();
+
+        // 构建更新对象
+        Category category = Category.builder()
+                .id(categoryId)
+                .name(categoryName)
+                .updateTime(new Date())
+                .build();
+        this.baseMapper.updateById(category);
+        return Result.success("分类名称更新成功");
     }
 
     /**
@@ -111,17 +148,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
     }
 
-    /**
-     * 删除分类
-     * @param deleteCategoryDTO
-     * @return
-     */
-    @Override
-    public Result deleteCategory(DeleteCategoryDTO deleteCategoryDTO) {
-        Long categoryId = deleteCategoryDTO.getCategoryId();
-        this.baseMapper.deleteById(categoryId);
-        return Result.success();
-    }
 
     /**
      * 下拉列表获取分类

@@ -19,3 +19,19 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 自定义Ant Message 组件样式 */
+.ant-message-notice-content {
+  @apply p-[18px] !important;
+}
+/* 自定义Ant Table 组件样式 */
+.ant-table-content {
+  @apply min-h-[600px] !important
+}
+/* 自定义Ant Tabs 组件样式 */
+.my-tabs .ant-tabs-nav {
+  @apply border-none !important
+}
+.my-tabs .ant-tabs-tab {
+  @apply rounded-lg !important;
+}

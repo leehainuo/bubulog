@@ -5,6 +5,7 @@ import com.lihainuo.bubulog.common.Result;
 import com.lihainuo.bubulog.domain.dto.AddCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.DeleteCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.QueryCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.UpdateCategoryDTO;
 import com.lihainuo.bubulog.domain.entity.Category;
 
 /**
@@ -38,9 +39,17 @@ public interface CategoryService extends IService<Category> {
     Result deleteCategory(DeleteCategoryDTO deleteCategoryDTO);
 
     /**
+     * 更新分类
+     * @param updateCategoryDTO
+     * @return
+     */
+    Result updateCategory(UpdateCategoryDTO updateCategoryDTO);
+
+    /**
      * 下拉列表获取分类
      * @param
      * @return
      */
     Result selectListCategory();
+
 }

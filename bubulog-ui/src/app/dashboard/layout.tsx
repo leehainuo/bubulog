@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <TabList />
         <Content
           style={{
-            margin: "24px 16px",
+            margin: "0 16px",
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,

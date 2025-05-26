@@ -6,6 +6,7 @@ import com.lihainuo.bubulog.common.aspect.ApiOperationLog;
 import com.lihainuo.bubulog.domain.dto.AddCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.DeleteCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.QueryCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.UpdateCategoryDTO;
 import com.lihainuo.bubulog.server.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,12 @@ public class CategoryController {
     @ApiOperationLog(description = "删除分类")
     public Result deleteCategory(@RequestBody DeleteCategoryDTO deleteCategoryDTO) {
         return categoryService.deleteCategory(deleteCategoryDTO);
+    }
+
+    @PostMapping("/update")
+    @ApiOperationLog(description = "更新分类")
+    public Result updateCategory(@RequestBody UpdateCategoryDTO updateCategoryDTO) {
+        return categoryService.updateCategory(updateCategoryDTO);
     }
 
     @PostMapping("/query")
