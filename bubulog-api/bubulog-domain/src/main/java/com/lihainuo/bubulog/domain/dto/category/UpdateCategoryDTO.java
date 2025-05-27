@@ -1,32 +1,21 @@
-package com.lihainuo.bubulog.domain.vo;
+package com.lihainuo.bubulog.domain.dto.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
-
 /**
  * @author lihainuo
  * @url www.lihainuo.com
- * @since 2025-05-22
+ * @since 2025-05-26
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class QueryCategoryVO {
-
-    // 分类 ID
+public class UpdateCategoryDTO {
     private Long categoryId;
-
-    // 分类名称
     private String categoryName;
-
-    // 创建时间
-    private Date createDate;
 }

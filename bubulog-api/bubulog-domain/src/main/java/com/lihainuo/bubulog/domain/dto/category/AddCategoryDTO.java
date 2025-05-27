@@ -1,4 +1,4 @@
-package com.lihainuo.bubulog.domain.dto;
+package com.lihainuo.bubulog.domain.dto.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DeleteCategoryDTO {
-
-    private Long categoryId;
-
+public class AddCategoryDTO {
+    private String categoryName;
 }

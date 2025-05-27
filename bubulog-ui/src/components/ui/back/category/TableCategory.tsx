@@ -7,7 +7,7 @@ import { deleteCategory, updateCategory } from "@/api/category";
 interface DataType {
   categoryId: string;
   categoryName: string;
-  createTime: string;
+  createDate: string;
 }
 
 interface TableCategoryProps {

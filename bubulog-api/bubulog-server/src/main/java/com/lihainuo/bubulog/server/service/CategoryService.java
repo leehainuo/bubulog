@@ -1,11 +1,12 @@
 package com.lihainuo.bubulog.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lihainuo.bubulog.common.PageResult;
 import com.lihainuo.bubulog.common.Result;
-import com.lihainuo.bubulog.domain.dto.AddCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.DeleteCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.QueryCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.UpdateCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.AddCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.DeleteCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.QueryCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.UpdateCategoryDTO;
 import com.lihainuo.bubulog.domain.entity.Category;
 
 /**
@@ -29,7 +30,7 @@ public interface CategoryService extends IService<Category> {
      * @param queryCategoryDTO
      * @return
      */
-    Result queryCategory(QueryCategoryDTO queryCategoryDTO);
+    PageResult queryCategory(QueryCategoryDTO queryCategoryDTO);
 
     /**
      * 删除分类

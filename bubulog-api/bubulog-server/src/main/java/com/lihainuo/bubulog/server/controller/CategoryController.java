@@ -1,12 +1,13 @@
 package com.lihainuo.bubulog.server.controller;
 
 
+import com.lihainuo.bubulog.common.PageResult;
 import com.lihainuo.bubulog.common.Result;
 import com.lihainuo.bubulog.common.aspect.ApiOperationLog;
-import com.lihainuo.bubulog.domain.dto.AddCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.DeleteCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.QueryCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.UpdateCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.AddCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.DeleteCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.QueryCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.UpdateCategoryDTO;
 import com.lihainuo.bubulog.server.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,7 @@ public class CategoryController {
 
     @PostMapping("/query")
     @ApiOperationLog(description = "查询分类")
-    public Result queryCategory(@RequestBody QueryCategoryDTO queryCategoryDTO) {
+    public PageResult queryCategory(@RequestBody QueryCategoryDTO queryCategoryDTO) {
         return categoryService.queryCategory(queryCategoryDTO);
     }
 

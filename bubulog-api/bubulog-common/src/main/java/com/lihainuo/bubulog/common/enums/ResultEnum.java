@@ -19,7 +19,7 @@ public enum ResultEnum implements BaseExceptionInterface {
     PRODUCT_ERROR("400","业务异常..."),
     UNAUTHORIZED("401", "无访问权限，请先登录！"),
     LOW_AUTHORITY("405", "权限低级"),
-    CATEGORY_NAME_EXIST("1000", "分类名已存在"),
+    CATEGORY_NAME_EXIST("1000", "名称已存在"),
 
     ;
     // 异常码

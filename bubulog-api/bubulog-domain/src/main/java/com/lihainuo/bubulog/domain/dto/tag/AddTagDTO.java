@@ -1,4 +1,4 @@
-package com.lihainuo.bubulog.domain.dto;
+package com.lihainuo.bubulog.domain.dto.tag;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,14 +8,13 @@ import lombok.NoArgsConstructor;
 /**
  * @author lihainuo
  * @url www.lihainuo.com
- * @since 2025-05-26
+ * @since 2025-05-27
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UpdateCategoryDTO {
-    private Long categoryId;
-    private String categoryName;
+public class AddTagDTO {
+    private String tagName;
 }

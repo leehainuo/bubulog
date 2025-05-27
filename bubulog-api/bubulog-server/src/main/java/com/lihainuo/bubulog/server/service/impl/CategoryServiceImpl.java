@@ -9,10 +9,10 @@ import com.lihainuo.bubulog.common.PageResult;
 import com.lihainuo.bubulog.common.Result;
 import com.lihainuo.bubulog.common.enums.ResultEnum;
 import com.lihainuo.bubulog.common.exception.BusinessException;
-import com.lihainuo.bubulog.domain.dto.AddCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.DeleteCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.QueryCategoryDTO;
-import com.lihainuo.bubulog.domain.dto.UpdateCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.AddCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.DeleteCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.QueryCategoryDTO;
+import com.lihainuo.bubulog.domain.dto.category.UpdateCategoryDTO;
 import com.lihainuo.bubulog.domain.entity.Category;
 import com.lihainuo.bubulog.domain.vo.QueryCategoryVO;
 import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
@@ -22,8 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -51,8 +49,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public Result addCategory(AddCategoryDTO addCategoryDTO) {
         String categoryName = addCategoryDTO.getCategoryName();
         // 先判断该分类是否已经存在
-        Category category = this.baseMapper
-                .selectByName(addCategoryDTO.getCategoryName());
+        Category category = this.baseMapper.selectByName(categoryName);
 
         if (Objects.nonNull(category)) {
             log.warn("分类名称： {}，已存在", categoryName);
@@ -61,7 +58,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
         // 不存在则添加
         Category newCategory = Category.builder()
-                .name(addCategoryDTO.getCategoryName().trim())
+                .name(categoryName.trim())
                 .build();
 
         this.baseMapper.insert(newCategory);
@@ -108,7 +105,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
      * @return
      */
     @Override
-    public Result queryCategory(QueryCategoryDTO queryCategoryDTO) {
+    public PageResult queryCategory(QueryCategoryDTO queryCategoryDTO) {
         // 获取当前也、以及每页需要展示的数量
         Long current = queryCategoryDTO.getCurrent();
         Long size = queryCategoryDTO.getSize();
@@ -138,7 +135,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
                     .map(item -> QueryCategoryVO.builder()  // 使用 VO 的 Builder
                             .categoryId(item.getId())
                             .categoryName(item.getName())
-                            .createTime(item.getCreateTime())
+                            .createDate(item.getCreateTime())
                             .build()  // 必须调用 build() 生成 VO 实例
                     )
                     .collect(Collectors.toList());

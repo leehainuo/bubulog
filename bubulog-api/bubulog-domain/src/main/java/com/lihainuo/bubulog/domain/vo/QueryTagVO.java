@@ -5,27 +5,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-
 
 /**
  * @author lihainuo
  * @url www.lihainuo.com
- * @since 2025-05-22
+ * @since 2025-05-27
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class QueryCategoryVO {
+public class QueryTagVO {
+    // 标签 ID
+    private Long tagId;
 
-    // 分类 ID
-    private Long categoryId;
-
-    // 分类名称
-    private String categoryName;
+    // 标签名称
+    private String tagName;
 
     // 创建时间
     private Date createDate;
