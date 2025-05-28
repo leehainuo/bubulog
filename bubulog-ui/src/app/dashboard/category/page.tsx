@@ -51,7 +51,7 @@ export const CategoryPage = () => {
   return (
     <section className="flex flex-col">
       <div className="flex items-center gap-8">
-        <AddCategory onSuccess={handleRefresh} />
+        <AddCategory onRefresh={handleRefresh} />
         <div className="border-x h-6" />
         <QueryCategory onQuery={handleQuery} onReset={handleReset} />
       </div>

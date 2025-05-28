@@ -4,7 +4,7 @@ import { Button, Modal, Input, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { addCategory } from "@/api/category";
 
-export const AddCategory = ({ onSuccess }: { onSuccess: () => void }) => {
+export const AddCategory = ({ onRefresh }: { onRefresh: () => void }) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [categoryName, setCategoryName] = useState("");
@@ -29,7 +29,7 @@ export const AddCategory = ({ onSuccess }: { onSuccess: () => void }) => {
         messageApi.success("添加成功");
       }
       setCategoryName("");
-      onSuccess();
+      onRefresh();
     } else {
       messageApi.error("添加失败");
     }
@@ -41,9 +41,8 @@ export const AddCategory = ({ onSuccess }: { onSuccess: () => void }) => {
   };
 
   return (
-    <>
-      {contextHolder}
       <div>
+        {contextHolder}
         <Button type="primary" onClick={showModal} className="w-20">
           <PlusOutlined /> 新增
         </Button>
@@ -64,6 +63,5 @@ export const AddCategory = ({ onSuccess }: { onSuccess: () => void }) => {
           />
         </Modal>
       </div>
-    </>
   );
 };
