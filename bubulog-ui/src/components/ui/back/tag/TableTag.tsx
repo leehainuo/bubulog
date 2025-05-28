@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Table, Modal, Input, message } from "antd";
+import { Table, Modal, Input, message, Empty } from "antd";
 import type { TableColumnsType } from "antd";
 import { deleteTag, updateTag } from "@/api/tag";
 
@@ -99,6 +99,7 @@ export const TableTag = ({
           onChange: onPageChange,
         }}
         loading={isLoading}
+        locale={{emptyText: <Empty description="暂无数据"></Empty>}}
       />
 
       {/* 编辑弹窗 */}

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Table, Modal, Input, message } from "antd";
+import { Table, Modal, Input, message, Empty } from "antd";
 import type { TableColumnsType } from "antd";
 import { deleteCategory, updateCategory } from "@/api/category";
 
@@ -99,6 +99,7 @@ export const TableCategory = ({
           onChange: onPageChange,
         }}
         loading={isLoading}
+        locale={{emptyText: <Empty description="暂无数据"></Empty>}}
       />
 
       {/* 编辑弹窗 */}

@@ -20,6 +20,7 @@ public enum ResultEnum implements BaseExceptionInterface {
     UNAUTHORIZED("401", "无访问权限，请先登录！"),
     LOW_AUTHORITY("405", "权限低级"),
     CATEGORY_NAME_EXIST("1000", "名称已存在"),
+    FILE_UPLOAD_ERROR("1001", "文件上传失败"),
 
     ;
     // 异常码

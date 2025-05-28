@@ -50,6 +50,20 @@ CREATE TABLE `t_tag` (
     KEY `idx_create_time` (`create_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='文章标签表';
 
+CREATE TABLE `t_blog_settings` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `logo` varchar(120) NOT NULL DEFAULT '' COMMENT '博客Logo',
+    `name` varchar(60) NOT NULL DEFAULT '' COMMENT '博客名称',
+    `author` varchar(20) NOT NULL DEFAULT '' COMMENT '作者名',
+    `introduction` varchar(120) NOT NULL DEFAULT '' COMMENT '介绍语',
+    `avatar` varchar(120) NOT NULL DEFAULT '' COMMENT '作者头像',
+    `github_homepage` varchar(60) NOT NULL DEFAULT '' COMMENT 'GitHub 主页访问地址',
+    `juejin_homepage` varchar(60) NOT NULL DEFAULT '' COMMENT '稀土掘金 主页访问地址',
+    `wechat_account` varchar(60) NOT NULL DEFAULT '' COMMENT '微信号',
+    `qq_account` varchar(60) NOT NULL DEFAULT '' COMMENT 'QQ号',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='博客设置表';
+
 
 -- 插入初始账号数据
 INSERT INTO `t_user` (username, password)

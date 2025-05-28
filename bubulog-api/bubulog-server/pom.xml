@@ -67,11 +67,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!-- Auth  -->
-        <dependency>
-            <groupId>com.lihainuo</groupId>
-            <artifactId>bubulog-auth</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -90,10 +86,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
-                <configuration>
-                    <mainClass>com.lihainuo.bubulog.server.BubulogServiceApplication</mainClass>
-                    <skip>true</skip>
-                </configuration>
                 <executions>
                     <execution>
                         <id>repackage</id>
