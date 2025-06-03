@@ -9,10 +9,9 @@ import com.lihainuo.bubulog.common.Result;
 import com.lihainuo.bubulog.common.enums.ResultEnum;
 import com.lihainuo.bubulog.common.exception.BusinessException;
 import com.lihainuo.bubulog.domain.dto.tag.AddTagDTO;
-import com.lihainuo.bubulog.domain.dto.tag.DeleteDTO;
+import com.lihainuo.bubulog.domain.dto.tag.DeleteTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.QueryTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.UpdateTagDTO;
-import com.lihainuo.bubulog.domain.entity.Category;
 import com.lihainuo.bubulog.domain.entity.Tag;
 
 import com.lihainuo.bubulog.domain.vo.QueryTagVO;
@@ -69,12 +68,12 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
 
     /**
      * 删除标签
-     * @param deleteDTO
+     * @param deleteTagDTO
      * @return
      */
     @Override
-    public Result deleteTag(DeleteDTO deleteDTO) {
-        Long tagId = deleteDTO.getTagId();
+    public Result deleteTag(DeleteTagDTO deleteTagDTO) {
+        Long tagId = deleteTagDTO.getTagId();
         this.baseMapper.deleteById(tagId);
         return Result.success();
     }

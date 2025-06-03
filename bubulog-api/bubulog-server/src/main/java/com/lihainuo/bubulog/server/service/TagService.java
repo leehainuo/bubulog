@@ -3,7 +3,7 @@ package com.lihainuo.bubulog.server.service;
 import com.lihainuo.bubulog.common.PageResult;
 import com.lihainuo.bubulog.common.Result;
 import com.lihainuo.bubulog.domain.dto.tag.AddTagDTO;
-import com.lihainuo.bubulog.domain.dto.tag.DeleteDTO;
+import com.lihainuo.bubulog.domain.dto.tag.DeleteTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.QueryTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.UpdateTagDTO;
 import com.lihainuo.bubulog.domain.entity.Tag;
@@ -27,10 +27,10 @@ public interface TagService extends IService<Tag> {
 
     /**
      * 删除标签
-     * @param deleteDTO
+     * @param deleteTagDTO
      * @return
      */
-    Result deleteTag(DeleteDTO deleteDTO);
+    Result deleteTag(DeleteTagDTO deleteTagDTO);
 
     /**
      * 更新标签

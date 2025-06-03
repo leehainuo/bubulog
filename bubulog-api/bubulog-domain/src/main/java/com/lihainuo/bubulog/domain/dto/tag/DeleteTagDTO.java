@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DeleteDTO {
+public class DeleteTagDTO {
     private Long tagId;
 }

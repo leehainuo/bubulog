@@ -4,7 +4,7 @@ import com.lihainuo.bubulog.common.PageResult;
 import com.lihainuo.bubulog.common.Result;
 import com.lihainuo.bubulog.common.aspect.ApiOperationLog;
 import com.lihainuo.bubulog.domain.dto.tag.AddTagDTO;
-import com.lihainuo.bubulog.domain.dto.tag.DeleteDTO;
+import com.lihainuo.bubulog.domain.dto.tag.DeleteTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.QueryTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.UpdateTagDTO;
 import com.lihainuo.bubulog.server.service.TagService;
@@ -27,30 +27,30 @@ import org.springframework.web.bind.annotation.RestController;
 public class TagController {
 
     @Autowired
-    private TagService tagService;
+    private TagService service;
 
     @PostMapping("/add")
     @ApiOperationLog(description = "添加标签")
     public Result addTag(@RequestBody AddTagDTO addTagDTO) {
-        return tagService.addTag(addTagDTO);
+        return service.addTag(addTagDTO);
     }
 
     @PostMapping("/delete")
     @ApiOperationLog(description = "删除标签")
-    public Result deleteTag(@RequestBody DeleteDTO deleteDTO) {
-        return tagService.deleteTag(deleteDTO);
+    public Result deleteTag(@RequestBody DeleteTagDTO deleteTagDTO) {
+        return service.deleteTag(deleteTagDTO);
     }
 
     @PostMapping("/update")
     @ApiOperationLog(description = "更新标签")
     public Result updateTag(@RequestBody UpdateTagDTO updateTagDTO) {
-        return tagService.updateTag(updateTagDTO);
+        return service.updateTag(updateTagDTO);
     }
 
     @PostMapping("/query")
     @ApiOperationLog(description = "查询标签")
     public PageResult queryTag(@RequestBody QueryTagDTO queryTagDTO) {
-        return tagService.queryTag(queryTagDTO);
+        return service.queryTag(queryTagDTO);
     }
 
 }

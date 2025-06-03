@@ -26,36 +26,36 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryService service;
 
     @PostMapping("/add")
     @ApiOperationLog(description = "添加分类")
     public Result addCategory(@RequestBody AddCategoryDTO addCategoryDTO) {
-        return categoryService.addCategory(addCategoryDTO);
+        return service.addCategory(addCategoryDTO);
     }
 
     @PostMapping("/delete")
     @ApiOperationLog(description = "删除分类")
     public Result deleteCategory(@RequestBody DeleteCategoryDTO deleteCategoryDTO) {
-        return categoryService.deleteCategory(deleteCategoryDTO);
+        return service.deleteCategory(deleteCategoryDTO);
     }
 
     @PostMapping("/update")
     @ApiOperationLog(description = "更新分类")
     public Result updateCategory(@RequestBody UpdateCategoryDTO updateCategoryDTO) {
-        return categoryService.updateCategory(updateCategoryDTO);
+        return service.updateCategory(updateCategoryDTO);
     }
 
     @PostMapping("/query")
     @ApiOperationLog(description = "查询分类")
     public PageResult queryCategory(@RequestBody QueryCategoryDTO queryCategoryDTO) {
-        return categoryService.queryCategory(queryCategoryDTO);
+        return service.queryCategory(queryCategoryDTO);
     }
 
     @PostMapping("/select/list")
     @ApiOperationLog(description = "下拉列表获取分类")
     public Result selectListCategory() {
-        return categoryService.selectListCategory();
+        return service.selectListCategory();
     }
 
 }
