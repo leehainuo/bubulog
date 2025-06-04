@@ -22,4 +22,10 @@ public interface BlogSettingsService extends IService<BlogSettings> {
      * @return
      */
     Result updateBlogSettings(UpdateBlogSettingsDTO updateBlogSettingsDTO);
+
+    /**
+     * 获取博客设置详情
+     * @return
+     */
+    Result queryBlogSettings();
 }

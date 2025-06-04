@@ -30,4 +30,10 @@ public class BlogSettingsController {
     public Result updateBlogSettings(@RequestBody UpdateBlogSettingsDTO dto) {
         return service.updateBlogSettings(dto);
     }
+
+    @PostMapping("/query")
+    @ApiOperationLog(description = "获取博客设置详情")
+    public Result queryBlogSettings() {
+        return service.queryBlogSettings();
+    }
 }
