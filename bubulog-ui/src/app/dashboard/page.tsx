@@ -1,10 +1,10 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Suspense } from "react";
 import { message } from "antd";
 
-export default function DashboardPage() {
+const DashboardContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
@@ -29,5 +29,13 @@ export default function DashboardPage() {
       {contextHolder}
       <div>仪表盘</div>
     </>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={<div>加载中...</div>}>
+      <DashboardContent />
+    </Suspense>
   );
 }

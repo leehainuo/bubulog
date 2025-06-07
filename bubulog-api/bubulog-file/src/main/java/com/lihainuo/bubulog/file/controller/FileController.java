@@ -40,7 +40,7 @@ public class FileController {
      * @return
      */
     @PostMapping("/upload")
-    public FileVO upload(MultipartFile file) {
+    public Result upload(MultipartFile file) {
         /**
          * 所实现的服务类为 七牛云服务类
          * 后续可以改成从配置类获取从而达成所需服务类

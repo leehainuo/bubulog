@@ -19,7 +19,10 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-
+/* 自定义Ant Upload 组件样式 */
+.ant-upload-select {
+  @apply overflow-hidden !important
+}
 /* 自定义Ant Message 组件样式 */
 .ant-message-notice-content {
   @apply p-[18px] !important;

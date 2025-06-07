@@ -30,16 +30,6 @@ const dataSource = Array.from<DataType>({ length: 46 }).map<DataType>(
 
 export const TableArticle = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
-  };
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
@@ -50,7 +40,6 @@ export const TableArticle = () => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
-
 
   return (
       <Table<DataType>

@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCategory } from "@/api/category";
 import { QueryParams } from "@/types/category.type";
 
-export const CategoryPage = () => {
+export default function CategoryPage() {
   const [page, setPage] = useState(1);
   const [queryParams, setQueryParams] = useState<QueryParams>({ categoryName: "" });
 
@@ -65,6 +65,4 @@ export const CategoryPage = () => {
       {error && <div className="text-red-500">加载失败: {error.message}</div>}
     </section>
   );
-};
-
-export default CategoryPage;
+}

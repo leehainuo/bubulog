@@ -76,7 +76,7 @@ public class QiniuFileService implements FileService {
     }
 
     @Override
-    public FileVO upload(MultipartFile file) {
+    public Result upload(MultipartFile file) {
         try {
             // 获取文件地址 以及 文件扩展名
             String originalFilename = file.getOriginalFilename();
@@ -108,7 +108,7 @@ public class QiniuFileService implements FileService {
                 // 返回访问图片的URL
                 String url = prefixUrl + putRet.key;
                 log.info("访问上传成功图片的URL:{}", url);
-                FileVO fileVO = FileVO.builder().url(url).build();
+                fileVO = FileVO.builder().url(url).build();
             } catch (QiniuException e) {
                 e.printStackTrace();
                 if (e.response != null) {
@@ -125,7 +125,6 @@ public class QiniuFileService implements FileService {
             throw new BusinessException(ResultEnum.FILE_UPLOAD_ERROR);
         }
 
-
-        return fileVO;
+        return Result.success(fileVO);
     }
 }

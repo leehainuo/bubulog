@@ -6,7 +6,7 @@ export const Footer = () => {
     <Layout.Footer
      className="text-center"
     >
-        布布博客 ©{new Date().getFullYear()} Created by leehainuo
+        布布博客 ©{new Date().getFullYear()} 由 leehainuo 创建
     </Layout.Footer>
   )
 }

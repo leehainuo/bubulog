@@ -7,7 +7,7 @@ import { QueryParams } from "@/types/tag.type";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 
-export const TagPage = () => {
+export default function TagPage() {
   const [page, setPage] = useState(1);
   const [queryParams, setQueryParams] = useState<QueryParams>({ tagName: "" })
 
@@ -63,5 +63,3 @@ export const TagPage = () => {
     </section>
   );
 };
-
-export default TagPage;

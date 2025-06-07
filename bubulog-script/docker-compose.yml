@@ -1,0 +1,21 @@
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.29
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Shanghai
+      - MYSQL_CHARSET=utf8mb4
+      - MYSQL_COLLATION=utf8mb4_general_ci
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - /home/app/docker/volumes/mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+#  redis:
+#    container_name: redis
+#    image: redis:latest
+#    ports:
+#      - "6379:6379"
+#    restart: always

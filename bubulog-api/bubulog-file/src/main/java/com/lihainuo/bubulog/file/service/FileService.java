@@ -23,5 +23,5 @@ public interface FileService {
      * @param file
      * @return
      */
-    FileVO upload(MultipartFile file);
+    Result upload(MultipartFile file);
 }

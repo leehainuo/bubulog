@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { LoginForm } from "@/components/ui/auth/LoginForm";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Suspense } from "react";
 import { message } from "antd";
 import { motion } from "motion/react";
 import Link from "next/link";
 
-const LoginPage = () => {
+const LoginContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
@@ -69,6 +69,13 @@ const LoginPage = () => {
       </section>
     </>
   );
-};
+}
 
-export default LoginPage;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>加载中...</div>}>
+      <LoginContent />
+    </Suspense>
+  );
+}
+

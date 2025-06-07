@@ -1,9 +1,10 @@
+import { SettingBlogForm } from '@/components/ui/back/setting/SettingBlogForm'
 import React from 'react'
 
-export const SettingPage = () => {
+export default function SettingPage() {
   return (
-    <div>博客设置管理页</div>
+    <div className="p-4">
+      <SettingBlogForm />
+    </div>
   )
 }
-
-export default SettingPage

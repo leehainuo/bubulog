@@ -3,7 +3,7 @@ import { QueryArticle } from '@/components/ui/back/article/QueryArticle'
 import { TableArticle } from '@/components/ui/back/article/TableArticle'
 import React from 'react'
 
-export const ArticlePage = () => {
+export default function ArticlePage() {
   return (
     <section
     className="flex flex-col"
@@ -17,5 +17,3 @@ export const ArticlePage = () => {
    </section>
   )
 }
-
-export default ArticlePage
