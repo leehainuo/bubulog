@@ -1,21 +1,9 @@
-import axios from "@/lib/axios"
+import axios from "@/lib/axios";
+import { FormType } from "@/types/setting-blog.type";
 
 // 更新博客设置
-export const updateSettingBlog = (
-    logo: string,
-    name: string,
-    author: string,
-    introuduction: string,
-    avatar: string,
-    githubHomePage: string,
-    juejinHomePage: string,
-    wechatAccount: string,
-    qqAccount: string
-) => {
-    return axios.post("/admin/blog/settings/update", {
-        logo, name, author,
-        introuduction, avatar,
-        githubHomePage, juejinHomePage,
-        wechatAccount, qqAccount
-    });
-}
+export const updateSettingBlog = (req: FormType) => {
+  return axios.post("/admin/blog/settings/update", {
+    ...req,
+  });
+};
