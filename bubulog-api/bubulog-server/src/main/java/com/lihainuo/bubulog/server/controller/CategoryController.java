@@ -30,26 +30,26 @@ public class CategoryController {
 
     @PostMapping("/add")
     @ApiOperationLog(description = "添加分类")
-    public Result addCategory(@RequestBody AddCategoryDTO addCategoryDTO) {
-        return service.addCategory(addCategoryDTO);
+    public Result addCategory(@RequestBody AddCategoryDTO dto) {
+        return service.addCategory(dto);
     }
 
     @PostMapping("/delete")
     @ApiOperationLog(description = "删除分类")
-    public Result deleteCategory(@RequestBody DeleteCategoryDTO deleteCategoryDTO) {
-        return service.deleteCategory(deleteCategoryDTO);
+    public Result deleteCategory(@RequestBody DeleteCategoryDTO dto) {
+        return service.deleteCategory(dto);
     }
 
     @PostMapping("/update")
     @ApiOperationLog(description = "更新分类")
-    public Result updateCategory(@RequestBody UpdateCategoryDTO updateCategoryDTO) {
-        return service.updateCategory(updateCategoryDTO);
+    public Result updateCategory(@RequestBody UpdateCategoryDTO dto) {
+        return service.updateCategory(dto);
     }
 
     @PostMapping("/query")
     @ApiOperationLog(description = "查询分类")
-    public PageResult queryCategory(@RequestBody QueryCategoryDTO queryCategoryDTO) {
-        return service.queryCategory(queryCategoryDTO);
+    public PageResult queryCategory(@RequestBody QueryCategoryDTO dto) {
+        return service.queryCategory(dto);
     }
 
     @PostMapping("/select/list")

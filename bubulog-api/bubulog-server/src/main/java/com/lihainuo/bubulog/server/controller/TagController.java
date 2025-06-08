@@ -31,26 +31,26 @@ public class TagController {
 
     @PostMapping("/add")
     @ApiOperationLog(description = "添加标签")
-    public Result addTag(@RequestBody AddTagDTO addTagDTO) {
-        return service.addTag(addTagDTO);
+    public Result addTag(@RequestBody AddTagDTO dto) {
+        return service.addTag(dto);
     }
 
     @PostMapping("/delete")
     @ApiOperationLog(description = "删除标签")
-    public Result deleteTag(@RequestBody DeleteTagDTO deleteTagDTO) {
-        return service.deleteTag(deleteTagDTO);
+    public Result deleteTag(@RequestBody DeleteTagDTO dto) {
+        return service.deleteTag(dto);
     }
 
     @PostMapping("/update")
     @ApiOperationLog(description = "更新标签")
-    public Result updateTag(@RequestBody UpdateTagDTO updateTagDTO) {
-        return service.updateTag(updateTagDTO);
+    public Result updateTag(@RequestBody UpdateTagDTO dto) {
+        return service.updateTag(dto);
     }
 
     @PostMapping("/query")
     @ApiOperationLog(description = "查询标签")
-    public PageResult queryTag(@RequestBody QueryTagDTO queryTagDTO) {
-        return service.queryTag(queryTagDTO);
+    public PageResult queryTag(@RequestBody QueryTagDTO dto) {
+        return service.queryTag(dto);
     }
 
 }

@@ -19,6 +19,7 @@ import com.lihainuo.bubulog.repository.mapper.TagMapper;
 import com.lihainuo.bubulog.server.service.TagService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -40,16 +41,19 @@ import java.util.stream.Collectors;
 @Service
 public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagService {
 
+    @Autowired
+    private TagMapper tagMapper;
+
     /**
      * 添加标签
-     * @param addTagDTO
+     * @param dto
      * @return
      */
     @Override
-    public Result addTag(AddTagDTO addTagDTO) {
-        String tagName = addTagDTO.getTagName();
+    public Result addTag(AddTagDTO dto) {
+        String tagName = dto.getTagName();
         // 先判断该标签是否存在
-        Tag tag = this.baseMapper.selectByName(tagName);
+        Tag tag = tagMapper.selectByName(tagName);
 
         if (Objects.nonNull(tag)) {
             log.warn("标签名称：{}，已存在", tagName);
@@ -61,33 +65,33 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
                 .name(tagName.trim())
                 .build();
 
-        this.baseMapper.insert(newTag);
+        tagMapper.insert(newTag);
 
         return Result.success();
     }
 
     /**
      * 删除标签
-     * @param deleteTagDTO
+     * @param dto
      * @return
      */
     @Override
-    public Result deleteTag(DeleteTagDTO deleteTagDTO) {
-        Long tagId = deleteTagDTO.getTagId();
-        this.baseMapper.deleteById(tagId);
+    public Result deleteTag(DeleteTagDTO dto) {
+        Long tagId = dto.getTagId();
+        tagMapper.deleteById(tagId);
         return Result.success();
     }
 
     /**
      * 更新标签
-     * @param updateTagDTO
+     * @param dto
      * @return
      */
     @Override
-    public Result updateTag(UpdateTagDTO updateTagDTO) {
+    public Result updateTag(UpdateTagDTO dto) {
         // 获取更新标签Id、名称
-        Long tagId = updateTagDTO.getTagId();
-        String tagName = updateTagDTO.getTagName();
+        Long tagId = dto.getTagId();
+        String tagName = dto.getTagName();
 
         // 构建更新对象
         Tag tag = Tag.builder()
@@ -95,29 +99,29 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
                 .name(tagName)
                 .updateTime(new Date())
                 .build();
-        this.baseMapper.updateById(tag);
+        tagMapper.updateById(tag);
 
         return Result.success();
     }
 
     /**
      * 查询标签
-     * @param queryTagDTO
+     * @param dto
      * @return
      */
     @Override
-    public PageResult queryTag(QueryTagDTO queryTagDTO) {
+    public PageResult queryTag(QueryTagDTO dto) {
         // 获取当前页、以及每页需要展示的数量
-        Long current = queryTagDTO.getCurrent();
-        Long size = queryTagDTO.getSize();
+        Long current = dto.getCurrent();
+        Long size = dto.getSize();
         // 分页对象
         Page<Tag> page = new Page<>(current, size);
 
         // 构建分页查询
         LambdaQueryWrapper<Tag> wrapper = new LambdaQueryWrapper<>();
-        String tagName = queryTagDTO.getTagName();
-        Date startDate = queryTagDTO.getStartDate();
-        Date endDate = queryTagDTO.getEndDate();
+        String tagName = dto.getTagName();
+        Date startDate = dto.getStartDate();
+        Date endDate = dto.getEndDate();
 
         wrapper
             .like(StringUtils.isNotBlank(tagName), Tag::getName, tagName.trim())
@@ -126,7 +130,7 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
             .orderByDesc(Tag::getCreateTime);
 
         // 执行分页查询
-        Page<Tag> tagPage = this.baseMapper.selectPage(page, wrapper);
+        Page<Tag> tagPage = tagMapper.selectPage(page, wrapper);
 
         List<Tag> tags = tagPage.getRecords();
         log.info("----{}----", tags);

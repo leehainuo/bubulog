@@ -18,10 +18,10 @@ public interface BlogSettingsService extends IService<BlogSettings> {
 
     /**
      * 更新博客设置
-     * @param updateBlogSettingsDTO
+     * @param dto
      * @return
      */
-    Result updateBlogSettings(UpdateBlogSettingsDTO updateBlogSettingsDTO);
+    Result updateBlogSettings(UpdateBlogSettingsDTO dto);
 
     /**
      * 获取博客设置详情

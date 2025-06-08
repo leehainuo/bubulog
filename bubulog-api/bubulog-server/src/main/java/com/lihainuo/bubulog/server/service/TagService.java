@@ -20,29 +20,29 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface TagService extends IService<Tag> {
     /**
      * 添加标签
-     * @param addTagDTO
+     * @param dto
      * @return
      */
-    Result addTag(AddTagDTO addTagDTO);
+    Result addTag(AddTagDTO dto);
 
     /**
      * 删除标签
-     * @param deleteTagDTO
+     * @param dto
      * @return
      */
-    Result deleteTag(DeleteTagDTO deleteTagDTO);
+    Result deleteTag(DeleteTagDTO dto);
 
     /**
      * 更新标签
-     * @param updateTagDTO
+     * @param dto
      * @return
      */
-    Result updateTag(UpdateTagDTO updateTagDTO);
+    Result updateTag(UpdateTagDTO dto);
 
     /**
      * 查询标签
-     * @param queryTagDTO
+     * @param dto
      * @return
      */
-    PageResult queryTag(QueryTagDTO queryTagDTO);
+    PageResult queryTag(QueryTagDTO dto);
 }

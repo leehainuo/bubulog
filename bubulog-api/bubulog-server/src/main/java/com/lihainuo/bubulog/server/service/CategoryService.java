@@ -20,31 +20,31 @@ import com.lihainuo.bubulog.domain.entity.Category;
 public interface CategoryService extends IService<Category> {
     /**
      *  添加分类
-     * @param addCategoryDTO
+     * @param dto
      * @return
      */
-    Result addCategory(AddCategoryDTO addCategoryDTO);
+    Result addCategory(AddCategoryDTO dto);
 
     /**
      * 查询分类
-     * @param queryCategoryDTO
+     * @param dto
      * @return
      */
-    PageResult queryCategory(QueryCategoryDTO queryCategoryDTO);
+    PageResult queryCategory(QueryCategoryDTO dto);
 
     /**
      * 删除分类
-     * @param deleteCategoryDTO
+     * @param dto
      * @return
      */
-    Result deleteCategory(DeleteCategoryDTO deleteCategoryDTO);
+    Result deleteCategory(DeleteCategoryDTO dto);
 
     /**
      * 更新分类
-     * @param updateCategoryDTO
+     * @param dto
      * @return
      */
-    Result updateCategory(UpdateCategoryDTO updateCategoryDTO);
+    Result updateCategory(UpdateCategoryDTO dto);
 
     /**
      * 下拉列表获取分类

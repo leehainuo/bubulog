@@ -19,6 +19,7 @@ import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
 import com.lihainuo.bubulog.repository.mapper.CategoryMapper;
 import com.lihainuo.bubulog.server.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -40,16 +41,19 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     /**
      * 添加分类
-     * @param addCategoryDTO
+     * @param dto
      * @return
      */
     @Override
-    public Result addCategory(AddCategoryDTO addCategoryDTO) {
-        String categoryName = addCategoryDTO.getCategoryName();
+    public Result addCategory(AddCategoryDTO dto) {
+        String categoryName = dto.getCategoryName();
         // 先判断该分类是否已经存在
-        Category category = this.baseMapper.selectByName(categoryName);
+        Category category = categoryMapper.selectByName(categoryName);
 
         if (Objects.nonNull(category)) {
             log.warn("分类名称： {}，已存在", categoryName);
@@ -61,33 +65,33 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
                 .name(categoryName.trim())
                 .build();
 
-        this.baseMapper.insert(newCategory);
+        categoryMapper.insert(newCategory);
 
         return Result.success();
     }
 
     /**
      * 删除分类
-     * @param deleteCategoryDTO
+     * @param dto
      * @return
      */
     @Override
-    public Result deleteCategory(DeleteCategoryDTO deleteCategoryDTO) {
-        Long categoryId = deleteCategoryDTO.getCategoryId();
-        this.baseMapper.deleteById(categoryId);
+    public Result deleteCategory(DeleteCategoryDTO dto) {
+        Long categoryId = dto.getCategoryId();
+        categoryMapper.deleteById(categoryId);
         return Result.success();
     }
 
     /**
      * 更新分类
-     * @param updateCategoryDTO
+     * @param dto
      * @return
      */
     @Override
-    public Result updateCategory(UpdateCategoryDTO updateCategoryDTO) {
+    public Result updateCategory(UpdateCategoryDTO dto) {
         // 获取更新分类 Id、名称
-        Long categoryId = updateCategoryDTO.getCategoryId();
-        String categoryName = updateCategoryDTO.getCategoryName();
+        Long categoryId = dto.getCategoryId();
+        String categoryName = dto.getCategoryName();
 
         // 构建更新对象
         Category category = Category.builder()
@@ -95,28 +99,28 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
                 .name(categoryName)
                 .updateTime(new Date())
                 .build();
-        this.baseMapper.updateById(category);
+        categoryMapper.updateById(category);
         return Result.success("分类名称更新成功");
     }
 
     /**
      * 查询分类
-     * @param queryCategoryDTO
+     * @param dto
      * @return
      */
     @Override
-    public PageResult queryCategory(QueryCategoryDTO queryCategoryDTO) {
+    public PageResult queryCategory(QueryCategoryDTO dto) {
         // 获取当前也、以及每页需要展示的数量
-        Long current = queryCategoryDTO.getCurrent();
-        Long size = queryCategoryDTO.getSize();
+        Long current = dto.getCurrent();
+        Long size = dto.getSize();
         // 分页对象
         Page<Category> page = new Page<>(current, size);
 
         // 构建查询条件
         LambdaQueryWrapper<Category> wrapper = new LambdaQueryWrapper<>();
-        String categoryName = queryCategoryDTO.getCategoryName();
-        Date startDate = queryCategoryDTO.getStartDate();
-        Date endDate = queryCategoryDTO.getEndDate();
+        String categoryName = dto.getCategoryName();
+        Date startDate = dto.getStartDate();
+        Date endDate = dto.getEndDate();
 
         wrapper
             .like(StringUtils.isNotBlank(categoryName), Category::getName, categoryName.trim()) // like 模块查询
@@ -125,7 +129,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
             .orderByDesc(Category::getCreateTime); // 按创建时间倒叙
 
         // 执行分页查询
-        Page<Category> categoryPage = this.baseMapper
+        Page<Category> categoryPage = categoryMapper
                 .selectPage(page, wrapper);
 
         List<Category> categories = categoryPage.getRecords();
@@ -154,7 +158,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     @Override
     public Result selectListCategory() {
         // 查询所有分类
-        List<Category> categories = this.baseMapper.selectList(null);
+        List<Category> categories = categoryMapper.selectList(null);
         // 转换为VO
         List<SelectCategoryVO> vos = null;
         if (!CollectionUtils.isEmpty(categories)) {
