@@ -45,4 +45,10 @@ public interface TagService extends IService<Tag> {
      * @return
      */
     PageResult queryTag(QueryTagDTO dto);
+
+    /**
+     * 下拉列表获取标签
+     * @return
+     */
+    Result selectListTag();
 }

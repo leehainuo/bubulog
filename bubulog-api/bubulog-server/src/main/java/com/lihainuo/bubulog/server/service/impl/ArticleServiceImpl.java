@@ -57,9 +57,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public Result addArticle(AddArticleDTO dto) {
         // 1. dto -> entity(article) 并保存
         Article article = Article.builder()
-                .title(dto.getTitle())
-                .cover(dto.getCover())
-                .summary(dto.getSummary())
+                .title(dto.getArticleTitle())
+                .cover(dto.getArticleCover())
+                .summary(dto.getArticleSummary())
                 .createTime(new Date())
                 .updateTime(new Date())
                 .build();
@@ -68,7 +68,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         Long articleId = article.getId();
         ArticleContent articleContent = ArticleContent.builder()
                 .articleId(articleId)
-                .content(dto.getContent())
+                .content(dto.getArticleContent())
                 .build();
         articleContentMapper.insert(articleContent);
         // 3. 处理文章关联的分类
@@ -222,6 +222,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         // 获取文章的对应标签集合
         List<ArticleTagRel> articleTagRels = articleTagRelMapper.selectByArticleId(articleId);
         List<Long> tagIds = articleTagRels.stream().map(ArticleTagRel::getTagId).collect(Collectors.toList());
+        // 批量获取标签名称
+        List<Tag> tags = tagMapper.selectBatchIds(tagIds);
+        List<String> tagNames = tags.stream().map(Tag::getName).collect(Collectors.toList());
 
         // entity -> vo
         GetArticleDetailVO vo = GetArticleDetailVO.builder()
@@ -231,7 +234,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 .articleSummary(article.getSummary())
                 .articleContent(articleContent.getContent())
                 .categoryId(articleCategoryRel.getCategoryId())
-                .tagIds(tagIds)
+                .tags(tagNames)
                 .build();
 
         return Result.success(vo);

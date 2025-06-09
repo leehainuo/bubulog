@@ -53,4 +53,9 @@ public class TagController {
         return service.queryTag(dto);
     }
 
+    @PostMapping("/select/list")
+    @ApiOperationLog(description = "下拉列表获取标签")
+    public Result selectListTag() {
+        return service.selectListTag();
+    }
 }

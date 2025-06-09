@@ -19,15 +19,20 @@ export const updateCategory = (categoryId: string, categoryName: string) => {
 export const getCategory = (
   categoryName: string,
   current?: number,
-  Long?: number,
+  size?: number,
   startDate?: string,
   endDate?: string
 ) => {
   return axios.post("/admin/category/query", {
     categoryName,
     current,
-    Long,
+    size,
     startDate,
     endDate,
   });
 };
+
+// 获取所有分类
+export const getAllCategory = () => {
+  return axios.post("/admin/category/select/list")
+}

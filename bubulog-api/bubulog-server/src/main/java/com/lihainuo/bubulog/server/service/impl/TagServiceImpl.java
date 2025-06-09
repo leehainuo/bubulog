@@ -12,9 +12,12 @@ import com.lihainuo.bubulog.domain.dto.tag.AddTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.DeleteTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.QueryTagDTO;
 import com.lihainuo.bubulog.domain.dto.tag.UpdateTagDTO;
+import com.lihainuo.bubulog.domain.entity.Category;
 import com.lihainuo.bubulog.domain.entity.Tag;
 
 import com.lihainuo.bubulog.domain.vo.QueryTagVO;
+import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
+import com.lihainuo.bubulog.domain.vo.SelectTagVO;
 import com.lihainuo.bubulog.repository.mapper.TagMapper;
 import com.lihainuo.bubulog.server.service.TagService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -147,6 +150,25 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
         }
 
         return PageResult.success(tagPage, vos);
+    }
+
+    @Override
+    public Result selectListTag() {
+        // 查询所有分类
+        List<Tag> tags = tagMapper.selectList(null);
+        // 转换为VO
+        List<SelectTagVO> vos = null;
+        if (!CollectionUtils.isEmpty(tags)) {
+            // 将分类 ID -> Value 分类名称 -> Label
+            vos = tags.stream()
+                    .map(item -> SelectTagVO.builder()
+                            .label(item.getName())
+                            .value(item.getId())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        return Result.success(vos);
     }
 
 }

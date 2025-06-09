@@ -30,7 +30,7 @@ public class GetArticleDetailVO {
     private String articleContent;
     // 分类 ID
     private Long categoryId;
-    // 标签 ID 集合
-    private List<Long> tagIds;
+    // 标签 集合
+    private List<String> tags;
 
 }

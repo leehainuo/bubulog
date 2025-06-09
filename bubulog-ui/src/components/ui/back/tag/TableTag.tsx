@@ -67,7 +67,7 @@ export const TableTag = ({
 
   const columns: TableColumnsType<DataType> = [
     { title: "标签名称", dataIndex: "tagName" },
-    { title: "创建时间", dataIndex: "createTime" },
+    { title: "创建时间", dataIndex: "createDate" },
     {
       title: "操作",
       dataIndex: "",
@@ -99,7 +99,7 @@ export const TableTag = ({
           onChange: onPageChange,
         }}
         loading={isLoading}
-        locale={{emptyText: <Empty description="暂无数据"></Empty>}}
+        locale={{emptyText: isLoading ? null : <Empty description="暂无数据"></Empty>}}
       />
 
       {/* 编辑弹窗 */}

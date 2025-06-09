@@ -18,13 +18,13 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class AddArticleDTO {
-    private String title;
+    private String articleTitle;
 
-    private String content;
+    private String articleContent;
 
-    private String cover;
+    private String articleCover;
 
-    private String summary;
+    private String articleSummary;
 
     private Long categoryId;
 
