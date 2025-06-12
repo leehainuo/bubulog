@@ -209,6 +209,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     public Result getArticleDetail(GetArticleDetailDTO dto) {
+        log.info("!!!!!!!!!!!!! aeticleId: {}", dto.getArticleId());
         Long articleId = dto.getArticleId();
         Article article = articleMapper.selectById(articleId);
         if (Objects.isNull(article)) {
@@ -218,7 +219,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         // 获取文章内容
         ArticleContent articleContent = articleContentMapper.selectById(articleId);
         // 获取文章所属分类
-        ArticleCategoryRel articleCategoryRel = articleCategoryRelMapper.selectById(articleId);
+        ArticleCategoryRel articleCategoryRel = articleCategoryRelMapper.selectByArticleId(articleId);
         // 获取文章的对应标签集合
         List<ArticleTagRel> articleTagRels = articleTagRelMapper.selectByArticleId(articleId);
         List<Long> tagIds = articleTagRels.stream().map(ArticleTagRel::getTagId).collect(Collectors.toList());

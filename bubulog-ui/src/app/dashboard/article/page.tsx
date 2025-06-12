@@ -11,13 +11,14 @@ import React, { useState } from "react";
 
 export default function ArticlePage() {
   const [page, setPage] = useState(1);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [queryParams, setQueryParams] = useState<QueryParams>({
     articleTitle: "",
   });
 
   // 查询和分页参数
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["articles", page, queryParams],
+    queryKey: ["articles", page, queryParams, refreshKey],
     queryFn: () =>
       getArticle(
         queryParams.articleTitle,
@@ -49,7 +50,8 @@ export default function ArticlePage() {
 
   // 刷新
   const handleRefresh = () => {
-    refetch();
+    refetch()
+    setRefreshKey(prev => prev + 1);
   };
 
   return (

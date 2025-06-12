@@ -14,9 +14,13 @@ export default function EditArticlePage() {
 
   // 获取当前文章
   const { data: articleData } = useQuery({
-    queryKey: ["article"],
+    queryKey: ["article", articleId],
     queryFn: () => getArticleDetail(articleId),
-  })
+    staleTime: 0, // 数据立即过期
+    gcTime: 0, // 不缓存数据
+    refetchOnMount: true, // 组件挂载时重新获取
+    refetchOnWindowFocus: true, // 窗口获得焦点时重新获取
+  });
 
   // 获取分类下拉列表
   const { data: categoryData } = useQuery({

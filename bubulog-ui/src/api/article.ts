@@ -2,15 +2,21 @@ import axios from "@/lib/axios";
 import { FormType } from "@/types/article.type";
 
 // 添加文章
-export const addArticle = (req: FormType) => {
+export const addArticle = (data: FormType) => {
   return axios.post("/admin/article/add", {
-    ...req,
+    ...data,
   })
 }
 
 // 更新文章
-export const updateArticle = () => {
-  
+export const updateArticle = (
+  articleId: string,
+  data: FormType
+) => {
+  return axios.post("/admin/article/update", {
+    articleId,
+    ...data
+  })
 }
 
 // 获取文章详情

@@ -25,9 +25,6 @@ interface Article {
     categoryId: string,
     tags: string[]
 }
-
-// 定义表单提交的数据类型
-type EditFormType = Partial<Article>;
   
 interface EditArticleProps {
    articleData?: Article;
@@ -41,14 +38,22 @@ export const EditArticle = ({ articleData, categoryData, tagData }: EditArticleP
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
 
-  const updateMutation = useMutation<Article, Error, { articleId: string; data: EditFormType }>({ // 明确指定类型参数
-    mutationFn: async ({ articleId, data }) => { // 明确标记为 async
-      return await updateArticle({ articleId, data }); // 显式 await 并返回结果
+  const updateMutation = useMutation<Article, Error, { articleId: string; data: Article }>({
+    mutationFn: async ({ articleId, data }) => {
+      const res = await updateArticle(articleId, data);
+      return res.data;
     },
-    onSuccess: (data) => { // data 参数现在是 Article 类型
+    onSuccess: async (data) => {
       messageApi.success("更新成功");
-      queryClient.invalidateQueries({ queryKey: ["article", data.articleId] }); // 使用返回的 data.articleId
-      router.push("/dashboard/article");
+      // 清除特定文章的缓存
+      queryClient.removeQueries({ queryKey: ["article", data.articleId] });
+      // 使文章列表查询失效并重新获取
+      await queryClient.invalidateQueries({ queryKey: ["articles"] });
+      await queryClient.refetchQueries({ queryKey: ["articles"] });
+      // 等待数据更新完成后再跳转
+      setTimeout(() => {
+        router.push("/dashboard/article");
+      }, 100);
     },
     onError: (error) => {
       messageApi.error(`更新失败: ${error.message}`);
@@ -66,7 +71,7 @@ export const EditArticle = ({ articleData, categoryData, tagData }: EditArticleP
     }
   }, [articleData, form]);
 
-  const onFinish: FormProps<EditFormType>["onFinish"] = async (values) => {
+  const onFinish: FormProps["onFinish"] = async (values) => {
     console.log(values);
     if (articleData?.articleId) {
       updateMutation.mutate({

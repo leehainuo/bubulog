@@ -19,9 +19,10 @@ interface SelectOption {
 interface AddArticleProps {
   categoryData?: SelectOption[];
   tagData?: SelectOption[];
+  onSuccess?: () => void;
 }
 
-export const AddArticle = ({ categoryData, tagData }: AddArticleProps) => {
+export const AddArticle = ({ categoryData, tagData, onSuccess }: AddArticleProps) => {
   const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
   const onFinish: FormProps<FormType>["onFinish"] = async (values) => {
@@ -30,6 +31,7 @@ export const AddArticle = ({ categoryData, tagData }: AddArticleProps) => {
     if (res.status != 200) {
       messageApi.error("设置失败");
     } else {
+      onSuccess?.();
       router.push("/dashboard/article");
     }
   };
