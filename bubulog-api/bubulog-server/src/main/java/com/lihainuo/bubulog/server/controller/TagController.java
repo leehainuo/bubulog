@@ -58,4 +58,10 @@ public class TagController {
     public Result selectListTag() {
         return service.selectListTag();
     }
+
+    @PostMapping("/list")
+    @ApiOperationLog(description = "前台获取标签列表")
+    public Result queryTagList() {
+        return service.queryTagList();
+    }
 }

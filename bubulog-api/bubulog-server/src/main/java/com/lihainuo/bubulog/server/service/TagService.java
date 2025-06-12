@@ -51,4 +51,10 @@ public interface TagService extends IService<Tag> {
      * @return
      */
     Result selectListTag();
+
+    /**
+     * 前台获取标签列表
+     * @return
+     */
+    Result queryTagList();
 }

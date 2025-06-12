@@ -54,4 +54,10 @@ public class ArticleController {
     public Result getArticleDetail(@RequestBody GetArticleDetailDTO dto) {
         return service.getArticleDetail(dto);
     }
+
+    @PostMapping("/list")
+    @ApiOperationLog(description = "获取首页文章分页数据")
+    public Result queryArticleList(@RequestBody QueryArticleListDTO dto) {
+        return service.queryArticleList(dto);
+    }
 }

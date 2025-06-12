@@ -38,4 +38,14 @@ public interface ArticleTagRelMapper extends InsertBatchMapper<ArticleTagRel> {
         return selectList(Wrappers.<ArticleTagRel>lambdaQuery()
         .eq(ArticleTagRel::getArticleId, articleId));
     }
+
+    /**
+     * 根据文章 ID 集合批量查询
+     * @param articleIds
+     * @return
+     */
+    default List<ArticleTagRel> selectByArticleIds(List<Long> articleIds) {
+        return selectList(Wrappers.<ArticleTagRel>lambdaQuery()
+                .in(ArticleTagRel::getArticleId, articleIds));
+    }
 }

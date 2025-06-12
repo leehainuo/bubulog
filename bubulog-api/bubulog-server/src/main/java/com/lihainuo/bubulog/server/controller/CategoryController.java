@@ -58,4 +58,9 @@ public class CategoryController {
         return service.selectListCategory();
     }
 
+    @PostMapping("/list")
+    @ApiOperationLog(description = "前台获取分类列表")
+    public Result queryCategoryList() {
+        return service.queryCategoryList();
+    }
 }

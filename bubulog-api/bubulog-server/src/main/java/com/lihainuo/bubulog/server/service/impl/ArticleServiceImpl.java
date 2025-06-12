@@ -1,5 +1,6 @@
 package com.lihainuo.bubulog.server.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import com.lihainuo.bubulog.common.PageResult;
@@ -8,8 +9,7 @@ import com.lihainuo.bubulog.common.enums.ResultEnum;
 import com.lihainuo.bubulog.common.exception.BusinessException;
 import com.lihainuo.bubulog.domain.dto.article.*;
 import com.lihainuo.bubulog.domain.entity.*;
-import com.lihainuo.bubulog.domain.vo.GetArticleDetailVO;
-import com.lihainuo.bubulog.domain.vo.QueryArticleVO;
+import com.lihainuo.bubulog.domain.vo.*;
 import com.lihainuo.bubulog.repository.mapper.*;
 import com.lihainuo.bubulog.server.service.ArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -239,6 +239,87 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 .build();
 
         return Result.success(vo);
+    }
+
+    /**
+     * 获取首页文章分页数据
+     * @param dto
+     * @return
+     */
+    @Override
+    public Result queryArticleList(QueryArticleListDTO dto) {
+        Long current = dto.getCurrent();
+        Long size = dto.getSize();
+        // 1. 分页查询文章主体记录
+        Page<Article> articlePage = articleMapper.selectByPage(current, size, null, null, null);
+        // 返回的分页数据
+        List<Article> articles = articlePage.getRecords();
+        List<QueryArticleListVO> vos = null;
+        if (!CollectionUtils.isEmpty(articles)) {
+            // dto -> vo
+            vos = articles.stream()
+                    .map(item -> QueryArticleListVO.builder()
+                        .articleId(item.getId())
+                        .articleTitle(item.getTitle())
+                        .articleCover(item.getCover())
+                        .articleSummary(item.getSummary())
+                        .build())
+                    .collect(Collectors.toList());
+            // 拿到所有文章的 ID 集合
+            List<Long> articleIds = articles.stream().map(Article::getId).collect(Collectors.toList());
+            // 2. 设置文章所属分类
+            List<Category> categories = categoryMapper.selectList(Wrappers.emptyWrapper());
+            // 转 Map 方便后续根据分类 ID 拿到对应的名称
+            Map<Long, String> categoryIdNameMap = categories.stream().collect(Collectors.toMap(Category::getId, Category::getName));
+            // 根据文章 ID 批量查询所有关联记录
+            List<ArticleCategoryRel> articleCategoryRels = articleCategoryRelMapper.selectByArticleIds(articleIds);
+
+            vos.forEach(vo -> {
+                Long currArticleId = vo.getArticleId();
+                // 过滤出当前文章对应的关联数据
+                Optional<ArticleCategoryRel> optional = articleCategoryRels.stream().filter(rel -> Objects.equals(rel.getArticleId(), currArticleId)).findAny();
+                // 若不为空
+                if (optional.isPresent()) {
+                    ArticleCategoryRel articleCategoryRel = optional.get();
+                    Long categoryId = articleCategoryRel.getCategoryId();
+                    // 通过分类 ID 从 map 中拿到对应的分类名称
+                    String categoryName = categoryIdNameMap.get(categoryId);
+                    QueryCategoryListVO cvo = QueryCategoryListVO.builder()
+                            .categoryId(categoryId)
+                            .categoryName(categoryName)
+                            .build();
+                    // 设置到当前 vo 中
+                    vo.setCategory(cvo);
+                }
+            });
+            // 3. 设置文章标签
+            // 查询所有标签
+            List<Tag> tags = tagMapper.selectList(Wrappers.emptyWrapper());
+            // 转 Map
+            Map<Long, String> tagIdNameMap = tags.stream().collect(Collectors.toMap(Tag::getId, Tag::getName));
+            // 拿到所有文章的标签关联记录
+            List<ArticleTagRel> articleTagRels = articleTagRelMapper.selectByArticleIds(articleIds);
+            vos.forEach(vo -> {
+                Long currArticleId = vo.getArticleId();
+                // 过滤出当前文章的标签关联记录
+                List<ArticleTagRel> articleTagRelList = articleTagRels.stream().filter(rel -> Objects.equals(rel.getArticleId(), currArticleId)).collect(Collectors.toList());
+                List<QueryTagListVO> tvos = Lists.newArrayList();
+                // 将关联记录 entity -> vo 并设置对应标签
+                articleTagRelList.forEach(item -> {
+                    Long tagId = item.getTagId();
+                    String tagName = categoryIdNameMap.get(tagId);
+                    QueryTagListVO tvo = QueryTagListVO.builder()
+                            .tagId(tagId)
+                            .tagName(tagName)
+                            .build();
+                    tvos.add(tvo);
+                });
+                // 设置转换后的标签数据
+                vo.setTags(tvos);
+            });
+
+        }
+        return PageResult.success(articlePage, vos);
     }
 
     /**

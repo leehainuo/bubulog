@@ -53,4 +53,9 @@ public interface CategoryService extends IService<Category> {
      */
     Result selectListCategory();
 
+    /**
+     * 前台获取分类列表
+     * @return
+     */
+    Result queryCategoryList();
 }

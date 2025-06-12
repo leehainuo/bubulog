@@ -27,7 +27,7 @@ public interface ArticleMapper extends BaseMapper<Article> {
         Page<Article> page = new Page<>(current, size);
         // 构建查询条件
         LambdaQueryWrapper<Article> wrapper = Wrappers.<Article>lambdaQuery()
-                .like(StringUtils.isNotBlank(articleTitle), Article::getTitle, articleTitle.trim()) // like 模糊查询
+                .like(StringUtils.isNotBlank(articleTitle), Article::getTitle, articleTitle) // like 模糊查询
                 .ge(Objects.nonNull(startDate), Article::getCreateTime, startDate) // 大于等于 startDate
                 .le(Objects.nonNull(endDate), Article::getCreateTime, endDate) // 小于等于 endDate
                 .orderByDesc(Article::getCreateTime); // 按创建时间插叙

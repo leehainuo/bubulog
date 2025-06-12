@@ -49,4 +49,11 @@ public interface ArticleService extends IService<Article> {
      * @return
      */
     Result getArticleDetail(GetArticleDetailDTO dto);
+
+    /**
+     * 获取首页文章分页数据
+     * @param dto
+     * @return
+     */
+    Result queryArticleList(QueryArticleListDTO dto);
 }

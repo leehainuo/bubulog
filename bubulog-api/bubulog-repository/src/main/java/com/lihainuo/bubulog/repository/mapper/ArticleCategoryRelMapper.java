@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.lihainuo.bubulog.domain.entity.ArticleCategoryRel;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 文章所属分类关联表 Mapper 接口
@@ -35,6 +37,16 @@ public interface ArticleCategoryRelMapper extends BaseMapper<ArticleCategoryRel>
     default ArticleCategoryRel selectByArticleId(Long articleId) {
         return selectOne(Wrappers.<ArticleCategoryRel>lambdaQuery()
         .eq(ArticleCategoryRel::getArticleId, articleId));
+    }
+
+    /**
+     * 根据文章 ID 集合批量查询
+     * @param articleIds
+     * @return
+     */
+    default List<ArticleCategoryRel> selectByArticleIds(List<Long> articleIds) {
+        return selectList(Wrappers.<ArticleCategoryRel>lambdaQuery()
+                .in(ArticleCategoryRel::getArticleId, articleIds));
     }
 
     /**

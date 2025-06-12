@@ -3,6 +3,7 @@ package com.lihainuo.bubulog.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lihainuo.bubulog.common.PageResult;
 import com.lihainuo.bubulog.common.Result;
@@ -15,6 +16,7 @@ import com.lihainuo.bubulog.domain.dto.tag.UpdateTagDTO;
 import com.lihainuo.bubulog.domain.entity.Category;
 import com.lihainuo.bubulog.domain.entity.Tag;
 
+import com.lihainuo.bubulog.domain.vo.QueryTagListVO;
 import com.lihainuo.bubulog.domain.vo.QueryTagVO;
 import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
 import com.lihainuo.bubulog.domain.vo.SelectTagVO;
@@ -152,6 +154,10 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
         return PageResult.success(tagPage, vos);
     }
 
+    /**
+     * 下拉列表获取标签
+     * @return
+     */
     @Override
     public Result selectListTag() {
         // 查询所有分类
@@ -164,6 +170,28 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
                     .map(item -> SelectTagVO.builder()
                             .label(item.getName())
                             .value(item.getId())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        return Result.success(vos);
+    }
+
+    /**
+     * 前台获取标签列表
+     * @return
+     */
+    @Override
+    public Result queryTagList() {
+        // 查询所有标签
+        List<Tag> entities = tagMapper.selectList(Wrappers.emptyWrapper());
+        // entity -> vo
+        List<QueryTagListVO> vos = null;
+        if (!CollectionUtils.isEmpty(entities)) {
+            vos = entities.stream()
+                    .map(entity -> QueryTagListVO.builder()
+                            .tagId(entity.getId())
+                            .tagName(entity.getName())
                             .build())
                     .collect(Collectors.toList());
         }

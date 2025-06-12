@@ -3,6 +3,7 @@ package com.lihainuo.bubulog.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lihainuo.bubulog.common.PageResult;
@@ -15,6 +16,7 @@ import com.lihainuo.bubulog.domain.dto.category.QueryCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.category.UpdateCategoryDTO;
 import com.lihainuo.bubulog.domain.entity.ArticleCategoryRel;
 import com.lihainuo.bubulog.domain.entity.Category;
+import com.lihainuo.bubulog.domain.vo.QueryCategoryListVO;
 import com.lihainuo.bubulog.domain.vo.QueryCategoryVO;
 import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
 import com.lihainuo.bubulog.repository.mapper.ArticleCategoryRelMapper;
@@ -179,6 +181,28 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
                     .map(item -> SelectCategoryVO.builder()
                             .label(item.getName())
                             .value(item.getId())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        return Result.success(vos);
+    }
+
+    /**
+     * 前台获取分类列表
+     * @return
+     */
+    @Override
+    public Result queryCategoryList() {
+        // 查询所有分类
+        List<Category> entities = categoryMapper.selectList(Wrappers.emptyWrapper());
+        // entity -> vo
+        List<QueryCategoryListVO> vos = null;
+        if (!CollectionUtils.isEmpty(entities)) {
+            vos = entities.stream()
+                    .map(entity -> QueryCategoryListVO.builder()
+                            .categoryId(entity.getId())
+                            .categoryName(entity.getName())
                             .build())
                     .collect(Collectors.toList());
         }
