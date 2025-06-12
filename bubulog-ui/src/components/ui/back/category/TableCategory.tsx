@@ -59,8 +59,13 @@ export const TableCategory = ({
     setDeleteModalOpen(true);
   };
   const handleDeleteOk = async () => {
-    await deleteCategory(deleteRecord!.categoryId);
-    messageApi.success("删除成功");
+    const res = await deleteCategory(deleteRecord!.categoryId);
+    console.log(res.data)
+    if (res.data.code === 1004) {
+      messageApi.error("删除失败 有关联文章")
+    } else {
+      messageApi.success("删除成功");
+    }
     setDeleteModalOpen(false);
     onRefresh();
   };

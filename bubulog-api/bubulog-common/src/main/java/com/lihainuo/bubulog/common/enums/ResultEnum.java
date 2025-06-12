@@ -23,6 +23,7 @@ public enum ResultEnum implements BaseExceptionInterface {
     CATEGORY_NAME_NOT_EXIST("1001", "分类名称不存在"),
     ARTICLE_NOT_EXIST("1002", "文章不存在"),
     FILE_UPLOAD_ERROR("1003", "文件上传失败"),
+    CAN_NOT_DELETE("1004", "有关联，无法删除"),
 
     ;
     // 异常码

@@ -13,9 +13,11 @@ import com.lihainuo.bubulog.domain.dto.category.AddCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.category.DeleteCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.category.QueryCategoryDTO;
 import com.lihainuo.bubulog.domain.dto.category.UpdateCategoryDTO;
+import com.lihainuo.bubulog.domain.entity.ArticleCategoryRel;
 import com.lihainuo.bubulog.domain.entity.Category;
 import com.lihainuo.bubulog.domain.vo.QueryCategoryVO;
 import com.lihainuo.bubulog.domain.vo.SelectCategoryVO;
+import com.lihainuo.bubulog.repository.mapper.ArticleCategoryRelMapper;
 import com.lihainuo.bubulog.repository.mapper.CategoryMapper;
 import com.lihainuo.bubulog.server.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +45,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
     @Autowired
     private CategoryMapper categoryMapper;
+
+    @Autowired
+    private ArticleCategoryRelMapper articleCategoryRelMapper;
 
     /**
      * 添加分类
@@ -78,6 +83,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     @Override
     public Result deleteCategory(DeleteCategoryDTO dto) {
         Long categoryId = dto.getCategoryId();
+
+        // 校验该分类下是否已经又文章
+        ArticleCategoryRel articleCategoryRel = articleCategoryRelMapper.selectByCategoryId(categoryId);
+        if (Objects.isNull(articleCategoryRel)) {
+            log.warn("此分类包含文章，无法删除！categoryId{}", categoryId);
+            throw new BusinessException(ResultEnum.CAN_NOT_DELETE);
+        }
         categoryMapper.deleteById(categoryId);
         return Result.success();
     }
