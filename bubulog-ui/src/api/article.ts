@@ -26,7 +26,7 @@ export const getArticleDetail = (articleId: string) => {
   });
 };
 
-// 获取文章列表
+// 查询文章
 export const getArticle = (
   articleTitle: string,
   current?: number,
@@ -42,3 +42,14 @@ export const getArticle = (
     endDate,
   });
 };
+
+// 获取首页文章分页数据
+export const getArticleList = (
+  current: number,
+  size: number,
+) => {
+  return axios.post("/article/list", {
+    current,
+    size
+  })
+}

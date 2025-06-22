@@ -263,6 +263,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                         .articleTitle(item.getTitle())
                         .articleCover(item.getCover())
                         .articleSummary(item.getSummary())
+                        .createDate(item.getCreateTime())
                         .build())
                     .collect(Collectors.toList());
             // 拿到所有文章的 ID 集合

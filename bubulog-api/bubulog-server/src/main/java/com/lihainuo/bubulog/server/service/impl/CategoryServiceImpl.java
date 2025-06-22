@@ -88,7 +88,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
         // 校验该分类下是否已经又文章
         ArticleCategoryRel articleCategoryRel = articleCategoryRelMapper.selectByCategoryId(categoryId);
-        if (Objects.isNull(articleCategoryRel)) {
+        if (!Objects.isNull(articleCategoryRel)) {
             log.warn("此分类包含文章，无法删除！categoryId{}", categoryId);
             throw new BusinessException(ResultEnum.CAN_NOT_DELETE);
         }

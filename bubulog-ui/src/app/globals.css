@@ -19,6 +19,17 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* 自定义Ant Card 组件样式 */
+:where(.css-dev-only-do-not-override-vrrzze).ant-card-bordered {
+  @apply border-none !important
+}
+/* 自定义Ant Pagination 组件样式 */
+.ant-pagination-item {
+  @apply bg-[#f5f5f5] !important
+}
+.ant-pagination-item-active {
+  @apply bg-white !important
+}
 /* 自定义Ant Upload 组件样式 */
 .ant-upload-select {
   @apply overflow-hidden !important
